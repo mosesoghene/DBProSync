@@ -1,0 +1,63 @@
+2025-08-07 06:46:34 - root - INFO - Logging system initialized
+2025-08-07 06:46:34 - root - INFO - UI log handler added
+2025-08-07 06:46:34 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 06:46:34 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 06:46:34 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 06:47:05 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 06:47:05 - ConfigManager - INFO - Password updated successfully
+2025-08-07 06:56:18 - root - INFO - Logging system initialized
+2025-08-07 06:56:18 - root - INFO - UI log handler added
+2025-08-07 06:56:18 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 06:56:18 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 06:56:18 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 08:41:49 - root - INFO - Logging system initialized
+2025-08-07 08:41:49 - root - INFO - UI log handler added
+2025-08-07 08:41:49 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 08:41:49 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 08:41:49 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 08:45:32 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 08:45:32 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 08:45:32 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 08:46:28 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 08:46:28 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 08:46:28 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 08:46:29 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 08:46:29 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 08:46:29 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 08:46:29 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 08:46:29 - root - INFO - Settings updated
+2025-08-07 08:47:04 - root - INFO - Logging system initialized
+2025-08-07 08:47:04 - root - INFO - UI log handler added
+2025-08-07 08:47:04 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 08:47:04 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 08:47:04 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 08:47:46 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 08:47:46 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 08:47:46 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 08:47:47 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 08:47:47 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 08:47:47 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 08:47:47 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 08:47:47 - root - INFO - Settings updated
+2025-08-07 08:55:37 - root - INFO - Logging system initialized
+2025-08-07 08:55:37 - root - INFO - UI log handler added
+2025-08-07 08:55:37 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 08:55:37 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 08:55:37 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 08:56:10 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 08:56:10 - DatabaseManager - DEBUG - Disconnected from database: _local
+2025-08-07 08:56:10 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 08:56:10 - DatabaseManager - INFO - Found 214 tables in _local
+2025-08-07 08:57:25 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 08:57:25 - DatabaseManager - DEBUG - Disconnected from database: _cloud
+2025-08-07 08:57:26 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 08:57:26 - DatabaseManager - INFO - Found 214 tables in _cloud
+2025-08-07 09:00:23 - DatabaseManager - INFO - Connected to mysql database: TestSahub_local
+2025-08-07 09:00:23 - DatabaseManager - DEBUG - Disconnected from database: TestSahub_local
+2025-08-07 09:00:23 - DatabaseManager - INFO - Connected to mysql database: TestSahub_local
+2025-08-07 09:00:23 - DatabaseManager - INFO - Found 214 tables in TestSahub_local
+2025-08-07 09:00:57 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 09:00:57 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 09:00:57 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 09:00:57 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 09:00:57 - root - INFO - Settings updated

@@ -1,0 +1,9 @@
+{
+    "app_password_hash": "9e56e2ff9b0cda81821524df739598640c16d4a4ea1d48be97ca331724773531",
+    "database_pairs": [],
+    "log_level": "ERROR",
+    "auto_start": true,
+    "default_sync_interval": 300,
+    "max_log_size": 10,
+    "backup_enabled": true
+}
