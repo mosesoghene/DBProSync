@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 
 from .models import DatabasePair, AppConfig
-from ..utils.constants import (
+from utils.constants import (
     CONFIG_FILE, DEFAULT_PASSWORD, DEFAULT_LOG_LEVEL,
     DEFAULT_SYNC_INTERVAL, ERROR_MESSAGES
 )
@@ -404,4 +404,3 @@ class ConfigManager:
         except Exception as e:
             self.logger.error(f"Failed to import configuration: {e}")
             return False
-        

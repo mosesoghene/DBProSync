@@ -19,13 +19,13 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QTimer, QThread, Signal
 from PySide6.QtGui import QFont, QAction, QIcon
 
-from ..core.config_manager import ConfigManager
-from ..core.sync_worker import SyncWorker
-from ..core.models import JobStatus, DatabasePair
+from core.config_manager import ConfigManager
+from core.sync_worker import SyncWorker
+from core.models import JobStatus, DatabasePair
 from .log_handler import LogManager
 from .password_dialog import PasswordDialog
 from .settings_dialog import SettingsDialog
-from ..utils.constants import (
+from utils.constants import (
     WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT, LOG_VIEWER_MAX_HEIGHT,
     REFRESH_INTERVAL, STATUS_MESSAGES, ERROR_MESSAGES
 )

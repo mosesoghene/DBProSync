@@ -12,7 +12,7 @@ from contextlib import contextmanager
 
 from .models import DatabasePair, TableSyncConfig, SyncDirection, SyncResult, ChangeRecord
 from .database_manager import DatabaseManager
-from ..utils.constants import MAX_RETRY_ATTEMPTS, RETRY_DELAY
+from utils.constants import MAX_RETRY_ATTEMPTS, RETRY_DELAY
 
 
 class SyncEngine:
@@ -376,32 +376,133 @@ class SyncEngine:
             self.logger.error(f"Failed to apply INSERT: {e}")
             return False
 
-    def _apply_update(self, table_name: str, change: ChangeRecord, target_manager: DatabaseManager) -> bool:
-        """Apply an UPDATE operation."""
+    def _apply_insert(self, table_name: str, change: ChangeRecord, target_manager: DatabaseManager) -> bool:
+        """Apply an INSERT operation."""
         try:
-            # Build WHERE clause for primary key
+            # Get the complete record data from source database using primary key
+            source_manager = self.local_manager if target_manager == self.cloud_manager else self.cloud_manager
+
+            # Build query to get full record
             pk_conditions = []
             pk_params = []
 
             for col, val in change.primary_key_values.items():
-                if target_manager.config.db_type == 'sqlite':
+                if source_manager.config.db_type == 'sqlite':
                     pk_conditions.append(f"{col} = ?")
                 else:
                     pk_conditions.append(f"{col} = %s")
                 pk_params.append(val)
 
-            # Check if record exists
+            # Get the complete record from source
+            select_query = f"SELECT * FROM {table_name} WHERE {' AND '.join(pk_conditions)}"
+            records = source_manager.execute_query(select_query, tuple(pk_params))
+
+            if not records:
+                self.logger.warning(f"Source record not found for insert: {change.primary_key_values}")
+                return False
+
+            record = records[0]
+
+            # Check if record already exists in target
+            check_query = f"SELECT COUNT(*) as count FROM {table_name} WHERE {' AND '.join(pk_conditions)}"
+            results = target_manager.execute_query(check_query, tuple(pk_params))
+
+            if results and results[0].get('count', 0) > 0:
+                self.logger.debug(f"Record already exists in {table_name}, skipping insert")
+                return True
+
+            # Build INSERT statement
+            columns = list(record.keys())
+            values = [record[col] for col in columns]
+
+            if target_manager.config.db_type == 'sqlite':
+                placeholders = ', '.join(['?' for _ in columns])
+            else:
+                placeholders = ', '.join(['%s' for _ in columns])
+
+            insert_query = f"""
+            INSERT INTO {table_name} ({', '.join(columns)}) 
+            VALUES ({placeholders})
+            """
+
+            result = target_manager.execute_query(insert_query, tuple(values))
+
+            if result and result[0].get('affected_rows', 0) > 0:
+                self.logger.info(f"Inserted record into {table_name}: {change.primary_key_values}")
+                return True
+            else:
+                self.logger.error(f"Failed to insert record into {table_name}")
+                return False
+
+        except Exception as e:
+            self.logger.error(f"Failed to apply INSERT: {e}")
+            return False
+
+    def _apply_update(self, table_name: str, change: ChangeRecord, target_manager: DatabaseManager) -> bool:
+        """Apply an UPDATE operation."""
+        try:
+            # Get the complete updated record from source
+            source_manager = self.local_manager if target_manager == self.cloud_manager else self.cloud_manager
+
+            pk_conditions = []
+            pk_params = []
+
+            for col, val in change.primary_key_values.items():
+                if source_manager.config.db_type == 'sqlite':
+                    pk_conditions.append(f"{col} = ?")
+                else:
+                    pk_conditions.append(f"{col} = %s")
+                pk_params.append(val)
+
+            # Get current record from source
+            select_query = f"SELECT * FROM {table_name} WHERE {' AND '.join(pk_conditions)}"
+            records = source_manager.execute_query(select_query, tuple(pk_params))
+
+            if not records:
+                self.logger.warning(f"Source record not found for update: {change.primary_key_values}")
+                return False
+
+            record = records[0]
+
+            # Check if target record exists
             check_query = f"SELECT COUNT(*) as count FROM {table_name} WHERE {' AND '.join(pk_conditions)}"
             results = target_manager.execute_query(check_query, tuple(pk_params))
 
             if not results or results[0].get('count', 0) == 0:
-                self.logger.warning(f"Record not found in {table_name} for update, PK: {change.primary_key_values}")
-                return False
+                # Record doesn't exist, treat as insert
+                self.logger.info(f"Target record not found, inserting instead of updating: {table_name}")
+                return self._apply_insert(table_name, change, target_manager)
 
-            # For now, we'll just log the update operation
-            # In a full implementation, you'd need the complete update data
-            self.logger.info(f"Would update record in {table_name} with PK: {change.primary_key_values}")
-            return True
+            # Build UPDATE statement
+            pk_columns = set(change.primary_key_values.keys())
+            update_columns = [col for col in record.keys() if col not in pk_columns]
+
+            if not update_columns:
+                self.logger.debug(f"No non-primary key columns to update for {table_name}")
+                return True
+
+            if target_manager.config.db_type == 'sqlite':
+                set_clauses = [f"{col} = ?" for col in update_columns]
+            else:
+                set_clauses = [f"{col} = %s" for col in update_columns]
+
+            update_values = [record[col] for col in update_columns]
+            update_values.extend(pk_params)  # Add PK values for WHERE clause
+
+            update_query = f"""
+            UPDATE {table_name} 
+            SET {', '.join(set_clauses)}
+            WHERE {' AND '.join(pk_conditions)}
+            """
+
+            result = target_manager.execute_query(update_query, tuple(update_values))
+
+            if result and result[0].get('affected_rows', 0) > 0:
+                self.logger.info(f"Updated record in {table_name}: {change.primary_key_values}")
+                return True
+            else:
+                self.logger.warning(f"No rows updated in {table_name}: {change.primary_key_values}")
+                return True  # Consider successful if no rows affected (idempotent)
 
         except Exception as e:
             self.logger.error(f"Failed to apply UPDATE: {e}")
@@ -435,6 +536,61 @@ class SyncEngine:
         except Exception as e:
             self.logger.error(f"Failed to apply DELETE: {e}")
             return False
+
+    def _resolve_conflict(self, table_name: str, change: ChangeRecord,
+                          target_manager: DatabaseManager, conflict_resolution: str) -> bool:
+        """
+        Resolve conflicts during bidirectional sync.
+
+        Args:
+            table_name: Name of the table
+            change: Change record causing conflict
+            target_manager: Target database manager
+            conflict_resolution: Resolution strategy (newer_wins, local_wins, cloud_wins)
+
+        Returns:
+            True if conflict resolved and change should be applied, False otherwise
+        """
+        try:
+            # Get target record timestamp if it exists
+            pk_conditions = []
+            pk_params = []
+
+            for col, val in change.primary_key_values.items():
+                if target_manager.config.db_type == 'sqlite':
+                    pk_conditions.append(f"{col} = ?")
+                else:
+                    pk_conditions.append(f"{col} = %s")
+                pk_params.append(val)
+
+            # Check if there's a conflicting change in target's changelog
+            changelog_table = f"{table_name}_changelog"
+            conflict_query = f"""
+            SELECT MAX(timestamp) as latest_timestamp 
+            FROM {changelog_table}
+            WHERE {' AND '.join([f"JSON_EXTRACT(primary_key_values, '$.{col}') = {'?' if target_manager.config.db_type == 'sqlite' else '%s'}" for col in change.primary_key_values.keys()])}
+            AND database_id = %s
+            """
+
+            params = list(change.primary_key_values.values()) + [target_manager.config.id]
+            results = target_manager.execute_query(conflict_query, tuple(params))
+
+            if results and results[0].get('latest_timestamp'):
+                target_timestamp = results[0]['latest_timestamp']
+                change_timestamp = change.timestamp
+
+                if conflict_resolution == 'newer_wins':
+                    return change_timestamp > target_timestamp
+                elif conflict_resolution == 'local_wins':
+                    return target_manager.config.is_local
+                elif conflict_resolution == 'cloud_wins':
+                    return not target_manager.config.is_local
+
+            return True  # No conflict found
+
+        except Exception as e:
+            self.logger.error(f"Error resolving conflict: {e}")
+            return True  # Default to applying the change
 
     def stop_sync(self):
         """Stop the synchronization process."""

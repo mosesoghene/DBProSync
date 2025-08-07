@@ -14,7 +14,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QIcon, QPixmap
 
-from ..utils.constants import VALIDATION_RULES, ERROR_MESSAGES
+from utils.constants import VALIDATION_RULES, ERROR_MESSAGES
 
 
 class PasswordDialog(QDialog):

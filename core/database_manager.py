@@ -11,8 +11,8 @@ from typing import List, Dict, Any, Optional, Tuple
 from contextlib import contextmanager
 from datetime import datetime
 
-from .models import DatabaseConfig, ChangeRecord, DatabaseType
-from ..utils.constants import (
+from core.models import DatabaseConfig, ChangeRecord, DatabaseType
+from utils.constants import (
     CHANGELOG_TABLE_SUFFIX, MYSQL_CHANGELOG_TABLE,
     POSTGRESQL_CHANGELOG_TABLE, SQLITE_CHANGELOG_TABLE,
     MAX_BATCH_SIZE, ERROR_MESSAGES
@@ -607,11 +607,12 @@ class DatabaseManager:
             self.logger.error(f"Failed to get pending changes for {table_name}: {e}")
             return []
 
-    def mark_changes_synced(self, change_ids: List[int]) -> bool:
+    def mark_changes_synced(self, table_name: str, change_ids: List[int]) -> bool:
         """
         Mark changes as synced in changelog table.
 
         Args:
+            table_name: Name of the source table
             change_ids: List of change record IDs
 
         Returns:
@@ -625,32 +626,23 @@ class DatabaseManager:
                 if not self.connect():
                     return False
 
+            changelog_table = f"{table_name}{CHANGELOG_TABLE_SUFFIX}"
+
             with self.get_cursor() as cursor:
                 placeholders = ', '.join(
                     ['%s'] * len(change_ids)) if self.config.db_type != DatabaseType.SQLITE.value else ', '.join(
                     ['?'] * len(change_ids))
 
-                # We need to determine which changelog table to update
-                # For now, we'll assume all changes are from the same table
-                # In practice, you might need to group by table
                 query = f"""
-                UPDATE %s SET synced = {self._get_boolean_value(True)}
+                UPDATE {changelog_table} 
+                SET synced = {self._get_boolean_value(True)}
                 WHERE id IN ({placeholders})
                 """
 
-                # Group changes by table for proper updating
-                table_groups = {}
-                for change_id in change_ids:
-                    # This is a simplified approach - in practice you'd need to track
-                    # which changelog table each change_id belongs to
-                    table_groups.setdefault('default', []).append(change_id)
+                cursor.execute(query, change_ids)
 
-                for table_suffix, ids in table_groups.items():
-                    # This would need to be improved to handle multiple tables
-                    pass
-
-                self.logger.info(f"Marked {len(change_ids)} changes as synced")
-                return True
+            self.logger.info(f"Marked {len(change_ids)} changes as synced in {changelog_table}")
+            return True
 
         except Exception as e:
             self.logger.error(f"Failed to mark changes as synced: {e}")
@@ -711,6 +703,183 @@ class DatabaseManager:
             self.logger.error(f"Query execution failed: {e}")
             return []
 
+    def get_table_structure(self, table_name: str) -> Dict[str, Any]:
+        """
+        Get complete table structure including columns, types, and constraints.
+
+        Args:
+            table_name: Name of the table
+
+        Returns:
+            Dictionary containing table structure information
+        """
+        try:
+            columns = self.get_table_columns(table_name)
+            primary_keys = self.get_primary_key_columns(table_name)
+
+            return {
+                'columns': {col['name']: col for col in columns},
+                'primary_keys': primary_keys,
+                'column_names': [col['name'] for col in columns],
+                'non_pk_columns': [col['name'] for col in columns if col['name'] not in primary_keys]
+            }
+
+        except Exception as e:
+            self.logger.error(f"Failed to get table structure for {table_name}: {e}")
+            return {}
+
+    def _create_mysql_triggers_with_full_data(self, cursor, table_name: str, changelog_table: str,
+                                              pk_columns: List[str], db_id: str):
+        """Create MySQL triggers that store complete record data."""
+
+        # Get all columns for this table
+        structure = self.get_table_structure(table_name)
+        all_columns = structure.get('column_names', [])
+
+        if not all_columns:
+            raise Exception(f"Could not get column information for table {table_name}")
+
+        # Build JSON object for all columns
+        all_cols_json_new = ", ".join([f"'{col}', NEW.{col}" for col in all_columns])
+        all_cols_json_old = ", ".join([f"'{col}', OLD.{col}" for col in all_columns])
+        pk_json_new = ", ".join([f"'{col}', NEW.{col}" for col in pk_columns])
+        pk_json_old = ", ".join([f"'{col}', OLD.{col}" for col in pk_columns])
+
+        # INSERT trigger - stores complete record
+        insert_trigger = f"""
+        CREATE TRIGGER {table_name}_insert_trigger
+        AFTER INSERT ON {table_name}
+        FOR EACH ROW
+        INSERT INTO {changelog_table} 
+        (operation, table_name, primary_key_values, change_data, database_id)
+        VALUES ('INSERT', '{table_name}', 
+                JSON_OBJECT({pk_json_new}), 
+                JSON_OBJECT({all_cols_json_new}), 
+                '{db_id}')
+        """
+
+        # UPDATE trigger - stores both old and new values
+        update_trigger = f"""
+        CREATE TRIGGER {table_name}_update_trigger
+        AFTER UPDATE ON {table_name}
+        FOR EACH ROW
+        INSERT INTO {changelog_table} 
+        (operation, table_name, primary_key_values, change_data, database_id)
+        VALUES ('UPDATE', '{table_name}', 
+                JSON_OBJECT({pk_json_new}), 
+                JSON_OBJECT('old', JSON_OBJECT({all_cols_json_old}), 
+                           'new', JSON_OBJECT({all_cols_json_new})), 
+                '{db_id}')
+        """
+
+        # DELETE trigger - stores old values
+        delete_trigger = f"""
+        CREATE TRIGGER {table_name}_delete_trigger
+        AFTER DELETE ON {table_name}
+        FOR EACH ROW
+        INSERT INTO {changelog_table} 
+        (operation, table_name, primary_key_values, change_data, database_id)
+        VALUES ('DELETE', '{table_name}', 
+                JSON_OBJECT({pk_json_old}), 
+                JSON_OBJECT({all_cols_json_old}), 
+                '{db_id}')
+        """
+
+        # Drop existing triggers first
+        try:
+            cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_insert_trigger")
+            cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_update_trigger")
+            cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_delete_trigger")
+        except:
+            pass
+
+        cursor.execute(insert_trigger)
+        cursor.execute(update_trigger)
+        cursor.execute(delete_trigger)
+
+    def convert_value_for_db(self, value: Any, target_type: str) -> Any:
+        """
+        Convert a value to be compatible with the target database type.
+
+        Args:
+            value: Value to convert
+            target_type: Target database type
+
+        Returns:
+            Converted value
+        """
+        if value is None:
+            return None
+
+        try:
+            # Handle different database type conversions
+            if self.config.db_type == DatabaseType.SQLITE.value:
+                # SQLite is flexible with types, but handle some specifics
+                if target_type.lower() in ['boolean', 'bool']:
+                    return 1 if value else 0
+                elif target_type.lower() in ['datetime', 'timestamp']:
+                    if isinstance(value, str):
+                        return value
+                    return str(value)
+
+            elif self.config.db_type == DatabaseType.MYSQL.value:
+                if target_type.lower() in ['boolean', 'bool', 'tinyint(1)']:
+                    return bool(value)
+                elif target_type.lower() in ['json']:
+                    if isinstance(value, str):
+                        return value
+                    return json.dumps(value)
+
+            elif self.config.db_type == DatabaseType.POSTGRESQL.value:
+                if target_type.lower() in ['boolean', 'bool']:
+                    return bool(value)
+                elif target_type.lower() in ['jsonb', 'json']:
+                    if isinstance(value, str):
+                        return value
+                    return json.dumps(value)
+
+            return value
+
+        except Exception as e:
+            self.logger.warning(f"Failed to convert value {value} to type {target_type}: {e}")
+            return value
+
+    def create_table_backup(self, table_name: str, backup_suffix: str = None) -> bool:
+        """
+        Create a backup of a table before sync operations.
+
+        Args:
+            table_name: Name of the table to backup
+            backup_suffix: Suffix for backup table name
+
+        Returns:
+            True if backup created successfully
+        """
+        try:
+            if not backup_suffix:
+                backup_suffix = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+            backup_table_name = f"{table_name}_backup_{backup_suffix}"
+
+            if not self.connection:
+                if not self.connect():
+                    return False
+
+            with self.get_cursor() as cursor:
+                if self.config.db_type == DatabaseType.MYSQL.value:
+                    cursor.execute(f"CREATE TABLE {backup_table_name} AS SELECT * FROM {table_name}")
+                elif self.config.db_type == DatabaseType.POSTGRESQL.value:
+                    cursor.execute(f"CREATE TABLE {backup_table_name} AS SELECT * FROM {table_name}")
+                elif self.config.db_type == DatabaseType.SQLITE.value:
+                    cursor.execute(f"CREATE TABLE {backup_table_name} AS SELECT * FROM {table_name}")
+
+            self.logger.info(f"Created backup table: {backup_table_name}")
+            return True
+
+        except Exception as e:
+            self.logger.error(f"Failed to create backup for table {table_name}: {e}")
+            return False
+
     def __enter__(self):
         """Context manager entry."""
         self.connect()
@@ -719,4 +888,3 @@ class DatabaseManager:
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit."""
         self.disconnect()
-        

@@ -32,104 +32,7 @@ class SyncWorker(QObject):
         self.logger = logging.getLogger(self.__class__.__name__)
 
         # Worker state
-    def get_database_pair_status(self, pair_id: str) -> Dict[str, Any]:
-        """
-        Get status information for a specific database pair.
-
-        Args:
-            pair_id: ID of the database pair
-
-        Returns:
-            Dictionary containing pair status information
-        """
-        self._mutex.lock()
-        try:
-            if pair_id in self._sync_engines:
-                engine = self._sync_engines[pair_id]
-                return engine.get_sync_status()
-            else:
-                return {
-                    'error': 'Database pair not found or not enabled',
-                    'pair_id': pair_id
-                }
-        finally:
-            self._mutex.unlock()
-
-    def validate_all_configurations(self) -> Dict[str, List[str]]:
-        """
-        Validate all database pair configurations.
-
-        Returns:
-            Dictionary mapping pair IDs to lists of validation errors
-        """
-        self._mutex.lock()
-        try:
-            if self._is_running:
-                return {'error': ['Cannot validate while sync is running']}
-
-            validation_results = {}
-
-            for pair_id, engine in self._sync_engines.items():
-                try:
-                    errors = engine.validate_sync_configuration()
-                    validation_results[pair_id] = errors
-
-                    if errors:
-                        self.log_message.emit("WARNING",
-                            f"Validation issues found for {engine.db_pair.name}: {len(errors)} errors")
-                    else:
-                        self.log_message.emit("INFO",
-                            f"Configuration valid for {engine.db_pair.name}")
-
-                except Exception as e:
-                    validation_results[pair_id] = [f"Validation error: {e}"]
-                    self.log_message.emit("ERROR",
-                        f"Error validating {engine.db_pair.name}: {e}")
-
-            return validation_results
-
-        finally:
-            self._mutex.unlock()
-
-    def reset_statistics(self):
-        """Reset synchronization statistics."""
-        self._mutex.lock()
-        try:
-            self._sync_stats = {
-                'total_syncs': 0,
-                'successful_syncs': 0,
-                'failed_syncs': 0,
-                'last_sync_time': None,
-                'total_records_synced': 0
-            }
-            self.log_message.emit("INFO", "Sync statistics reset")
-        finally:
-            self._mutex.unlock()
-
-    def cleanup(self):
-        """Clean up resources and stop all operations."""
-        self._mutex.lock()
-        try:
-            self._stop_requested = True
-            self._is_scheduled = False
-
-            # Stop all sync engines
-            for engine in self._sync_engines.values():
-                try:
-                    engine.stop_sync()
-                except Exception as e:
-                    self.logger.error(f"Error stopping sync engine: {e}")
-
-            self._sync_engines.clear()
-            self._db_pairs.clear()
-
-            if self._is_running:
-                self._update_status(JobStatus.STOPPED)
-
-            self.log_message.emit("INFO", "Sync worker cleaned up")
-
-        finally:
-            self._mutex.unlock()is_running = False
+        self._is_running = False
         self._is_scheduled = False
         self._stop_requested = False
         self._current_status = JobStatus.STOPPED
@@ -511,4 +414,91 @@ class SyncWorker(QObject):
         Returns:
             Dictionary containing pair status information
         """
-        self._
+        self._mutex.lock()
+        try:
+            if pair_id in self._sync_engines:
+                engine = self._sync_engines[pair_id]
+                return engine.get_sync_status()
+            else:
+                return {
+                    'error': 'Database pair not found or not enabled',
+                    'pair_id': pair_id
+                }
+        finally:
+            self._mutex.unlock()
+
+    def validate_all_configurations(self) -> Dict[str, List[str]]:
+        """
+        Validate all database pair configurations.
+
+        Returns:
+            Dictionary mapping pair IDs to lists of validation errors
+        """
+        self._mutex.lock()
+        try:
+            if self._is_running:
+                return {'error': ['Cannot validate while sync is running']}
+
+            validation_results = {}
+
+            for pair_id, engine in self._sync_engines.items():
+                try:
+                    errors = engine.validate_sync_configuration()
+                    validation_results[pair_id] = errors
+
+                    if errors:
+                        self.log_message.emit("WARNING",
+                            f"Validation issues found for {engine.db_pair.name}: {len(errors)} errors")
+                    else:
+                        self.log_message.emit("INFO",
+                            f"Configuration valid for {engine.db_pair.name}")
+
+                except Exception as e:
+                    validation_results[pair_id] = [f"Validation error: {e}"]
+                    self.log_message.emit("ERROR",
+                        f"Error validating {engine.db_pair.name}: {e}")
+
+            return validation_results
+
+        finally:
+            self._mutex.unlock()
+
+    def reset_statistics(self):
+        """Reset synchronization statistics."""
+        self._mutex.lock()
+        try:
+            self._sync_stats = {
+                'total_syncs': 0,
+                'successful_syncs': 0,
+                'failed_syncs': 0,
+                'last_sync_time': None,
+                'total_records_synced': 0
+            }
+            self.log_message.emit("INFO", "Sync statistics reset")
+        finally:
+            self._mutex.unlock()
+
+    def cleanup(self):
+        """Clean up resources and stop all operations."""
+        self._mutex.lock()
+        try:
+            self._stop_requested = True
+            self._is_scheduled = False
+
+            # Stop all sync engines
+            for engine in self._sync_engines.values():
+                try:
+                    engine.stop_sync()
+                except Exception as e:
+                    self.logger.error(f"Error stopping sync engine: {e}")
+
+            self._sync_engines.clear()
+            self._db_pairs.clear()
+
+            if self._is_running:
+                self._update_status(JobStatus.STOPPED)
+
+            self.log_message.emit("INFO", "Sync worker cleaned up")
+
+        finally:
+            self._mutex.unlock()
