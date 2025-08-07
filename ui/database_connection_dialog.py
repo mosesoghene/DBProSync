@@ -89,6 +89,7 @@ class DatabaseConnectionDialog(QDialog):
         self.setWindowTitle(title)
         self.setModal(True)
         self.resize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
+        self.setMinimumSize(800, 700)
 
         # Main layout
         main_layout = QVBoxLayout(self)
@@ -398,7 +399,7 @@ class DatabaseConnectionDialog(QDialog):
 
         self.tables_widget.setRowCount(len(self.common_tables))
 
-        for i, table_name in enumerate(self.common_tables):
+        for i, table_name in enumerate(sorted(self.common_tables)):
             # Table name
             self.tables_widget.setItem(i, 0, QTableWidgetItem(table_name))
 

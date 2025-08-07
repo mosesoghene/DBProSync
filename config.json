@@ -1,9 +1,34 @@
 {
     "app_password_hash": "9e56e2ff9b0cda81821524df739598640c16d4a4ea1d48be97ca331724773531",
-    "database_pairs": [],
-    "log_level": "ERROR",
-    "auto_start": true,
-    "default_sync_interval": 300,
-    "max_log_size": 10,
-    "backup_enabled": true
-}
+    "database_pairs": [
+        {
+            "id": "6466e2d5-38db-433a-b9f5-b0c580a93a35",
+            "name": "testHub",
+            "local_db": {
+                "id": "18d8ecb6-a792-4fe4-a9b8-fd97d0937683",
+                "name": "testHub_local",
+                "db_type": "mysql",
+                "host": "localhost",
+                "port": 3306,
+                "database": "iqss_sahub_fs",
+                "username": "moghene",
+                "password": "Passw0rd$",
+                "is_local": true,
+                "connection_timeout": 30
+            },
+            "cloud_db": {
+                "id": "b40a5154-32c4-45cd-b034-f733cf166a48",
+                "name": "testHub_cloud",
+                "db_type": "mysql",
+                "host": "localhost",
+                "port": 3306,
+                "database": "iqss_sahub_fs_cloud",
+                "username": "jamal",
+                "password": "Passw0rd$",
+                "is_local": false,
+                "connection_timeout": 30
+            },
+            "tables": [
+                {
+                    "table_name": "academic_years",
+                    "sync_direction": 

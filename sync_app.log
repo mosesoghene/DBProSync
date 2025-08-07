@@ -110,3 +110,48 @@
 2025-08-07 13:23:32 - ui.main_window - INFO - Loaded 0 database pairs
 2025-08-07 13:25:03 - SyncWorker - INFO - Sync worker cleaned up
 2025-08-07 13:25:03 - root - INFO - UI log handler removed
+2025-08-07 13:26:25 - root - INFO - Logging system initialized
+2025-08-07 13:26:25 - root - INFO - UI log handler added
+2025-08-07 13:26:25 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 13:26:25 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 13:26:25 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:27:34 - root - INFO - Logging system initialized
+2025-08-07 13:27:34 - root - INFO - UI log handler added
+2025-08-07 13:27:34 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 13:27:34 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 13:27:34 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:28:03 - root - INFO - Logging system initialized
+2025-08-07 13:28:03 - root - INFO - UI log handler added
+2025-08-07 13:28:03 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 13:28:03 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 13:28:03 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:28:47 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 13:28:47 - DatabaseManager - DEBUG - Disconnected from database: _local
+2025-08-07 13:28:48 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 13:28:48 - DatabaseManager - INFO - Found 214 tables in _local
+2025-08-07 13:29:15 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 13:29:15 - DatabaseManager - DEBUG - Disconnected from database: _cloud
+2025-08-07 13:29:15 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 13:29:15 - DatabaseManager - INFO - Found 214 tables in _cloud
+2025-08-07 13:31:09 - root - INFO - Logging system initialized
+2025-08-07 13:31:09 - root - INFO - UI log handler added
+2025-08-07 13:31:09 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 13:31:09 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 13:31:09 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:32:17 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 13:32:17 - DatabaseManager - DEBUG - Disconnected from database: _local
+2025-08-07 13:32:17 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 13:32:17 - DatabaseManager - INFO - Found 214 tables in _local
+2025-08-07 13:32:18 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 13:32:18 - DatabaseManager - DEBUG - Disconnected from database: _cloud
+2025-08-07 13:32:18 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 13:32:18 - DatabaseManager - INFO - Found 214 tables in _cloud
+2025-08-07 13:32:34 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 13:32:34 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 13:32:34 - ConfigManager - INFO - Added database pair: testHub
+2025-08-07 13:32:45 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 13:32:45 - ConfigManager - ERROR - Failed to save config: Object of type SyncDirection is not JSON serializable
+2025-08-07 13:32:47 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 13:32:47 - ConfigManager - ERROR - Failed to save config: Object of type SyncDirection is not JSON serializable
+2025-08-07 13:33:40 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-07 13:33:40 - root - INFO - UI log handler removed
