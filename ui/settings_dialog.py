@@ -398,7 +398,7 @@ class SettingsDialog(QDialog):
         pair = pairs[current_row]
 
         # Test both connections
-        from ..core.database_manager import DatabaseManager
+        from core.database_manager import DatabaseManager
 
         local_manager = DatabaseManager(pair.local_db)
         cloud_manager = DatabaseManager(pair.cloud_db)

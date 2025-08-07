@@ -11,6 +11,7 @@ import logging
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
+from utils.custom_encoder import CustomEncoder
 from .models import DatabasePair, AppConfig
 from utils.constants import (
     CONFIG_FILE, DEFAULT_PASSWORD, DEFAULT_LOG_LEVEL,
@@ -161,7 +162,7 @@ class ConfigManager:
 
             # Save current config
             with open(self.config_file, 'w', encoding='utf-8') as f:
-                json.dump(self._config.to_dict(), f, indent=4, ensure_ascii=False)
+                json.dump(self._config.to_dict(), f, cls=CustomEncoder, indent=4, ensure_ascii=False)
 
             self.logger.info(f"Configuration saved to {self.config_file}")
             return True

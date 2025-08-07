@@ -1,12 +1,12 @@
 {
-    "app_password_hash": "9e56e2ff9b0cda81821524df739598640c16d4a4ea1d48be97ca331724773531",
+    "app_password_hash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1",
     "database_pairs": [
         {
-            "id": "6466e2d5-38db-433a-b9f5-b0c580a93a35",
-            "name": "testHub",
+            "id": "907cee66-ace2-4af9-8866-03a4da330f0a",
+            "name": "TestHub",
             "local_db": {
-                "id": "18d8ecb6-a792-4fe4-a9b8-fd97d0937683",
-                "name": "testHub_local",
+                "id": "44c07456-c1a3-4c2c-a0af-022b3387a1a7",
+                "name": "TestHub_local",
                 "db_type": "mysql",
                 "host": "localhost",
                 "port": 3306,
@@ -17,8 +17,8 @@
                 "connection_timeout": 30
             },
             "cloud_db": {
-                "id": "b40a5154-32c4-45cd-b034-f733cf166a48",
-                "name": "testHub_cloud",
+                "id": "50f2f96b-916d-45cb-a9d6-ad8bed5c4e3e",
+                "name": "TestHub_cloud",
                 "db_type": "mysql",
                 "host": "localhost",
                 "port": 3306,
@@ -31,4 +31,1511 @@
             "tables": [
                 {
                     "table_name": "academic_years",
-                    "sync_direction": 
+                    "sync_direction": "local_to_cloud",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "achievements",
+                    "sync_direction": "local_to_cloud",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "activity_feed",
+                    "sync_direction": "local_to_cloud",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "activity_type",
+                    "sync_direction": "local_to_cloud",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "allotment",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "assessment_max_marks",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "assessment_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "assets",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "attendance",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "attendance_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "author",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "batch_students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "batches",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "book",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "book_fine",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "borrow_book",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "bus_event",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "bus_event_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "bus_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "card_config",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "card_pin",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "category",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_co_scholastic",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_coscholastic_score",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_grade",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_group_17",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_groups",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_scores",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_scores_17",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_scores_split_17",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exam_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exams",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbsc_exams_17",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "cbscexam_scores_split",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "change_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "class_timings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "collector",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "collector_students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "collectorusertypes",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "complaint_categories",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "complaint_feedback",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "complaints",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "configurations",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "conflict_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "contacts",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "contacts_groups",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "contacts_list",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "countries",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "courses",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "currency",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "dashboard",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "dashboard_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "devices",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "document_models",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "document_uploads",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "driver_details",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "e_background_job",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "elective_exams",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "elective_groups",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "elective_scores",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "electives",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "email_attachments",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "email_drafts",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "email_recipients",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "email_templates",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_attendances",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_categories",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_departments",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_document",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_elective_subjects",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_event_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_grades",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employee_positions",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employees",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "employees_subjects",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "events",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "events_type",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exam_comments",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exam_format",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exam_groups",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exam_scores",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exam_scores_split",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exam_scores_term",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exams",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "exams_common",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fav_icon",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_categories",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_configurations",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_invoice_particulars",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_invoices",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_notification_receivers",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_notifications",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_particular_access",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_particulars",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_payment_types",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_paypal_config",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_subscriptions",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_taxes",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fee_transactions",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "file_uploads",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "file_uploads_category",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "file_uploads_students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "floor",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "food_info",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "form_field_data",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "form_fields",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "fuel_consumption",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "grading_levels",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "groups",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "guardian_list",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "guardians",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "history_store",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "holidays",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "home_work_rating",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "hosteldetails",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "leave_requests",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "leave_types",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "log_category",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "log_comment",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "logo",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "mailbox_attachments",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "mailbox_conversation",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "mailbox_message",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "mess_fee",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "mess_manage",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "module_access",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "modules",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "nationality",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "news",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "notification_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "notify",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "notify_receivers",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_exam_answers",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_exam_questions",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_exam_scores",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_exam_student_answers",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_exam_students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_exams",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "online_register_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "paystack_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "portal_themes",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "previous_year_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "principal_comments",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "promote_options",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "publication",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "purchase_items",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "purchase_material_requistion",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "purchase_products",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "purchase_stock",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "purchase_supply",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "purchase_vendors",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "push_notifications",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "registration",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "release_voucher_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "report_card_receivers",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "report_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "return_book",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "room",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "roomrequest",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "route_attendance",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "route_details",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "route_devices",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "salary_details",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "savedsearches",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "semester",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "semester_courses",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "shared_collectors",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "shared_guardian",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "skill_category",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "skill_category_attributes",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "skill_grades",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "skill_students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "sms",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "sms_count",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "sms_gateway",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "sms_gateway_parameter",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "sms_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "sms_templates",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "staff_report_recipient",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "staff_report_settings",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "stop_details",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_attentance",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_categories",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_collections",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_document",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_document_list",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_electives",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_event_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_leave_types",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_previous_datas",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_subjectwise_attentance",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "student_validation_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "subject_commonpool_split",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "subject_split",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "subjects",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "subjects_common_pool",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "system_events",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "system_templates",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "table 205",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "tbl_timezone",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "teacher_subjectwise_attentance",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "teacher_substitution",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "terms",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "timetable_entries",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "transportation",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "user_device",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "user_events",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "usersidentifier",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "vacate",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "vehicle_details",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "waitinglist_students",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "ward_event_log",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                },
+                {
+                    "table_name": "weekdays",
+                    "sync_direction": "no_sync",
+                    "last_sync": null,
+                    "is_enabled": true,
+                    "conflict_resolution": "newer_wins"
+                }
+            ],
+            "sync_interval": 300,
+            "is_enabled": true,
+            "last_sync": null
+        }
+    ],
+    "log_level": "INFO",
+    "auto_start": true,
+    "default_sync_interval": 300,
+    "max_log_size": 10,
+    "backup_enabled": true
+}

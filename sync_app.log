@@ -155,3 +155,293 @@
 2025-08-07 13:32:47 - ConfigManager - ERROR - Failed to save config: Object of type SyncDirection is not JSON serializable
 2025-08-07 13:33:40 - SyncWorker - INFO - Sync worker cleaned up
 2025-08-07 13:33:40 - root - INFO - UI log handler removed
+2025-08-07 15:31:28 - root - INFO - Logging system initialized
+2025-08-07 15:31:28 - root - INFO - UI log handler added
+2025-08-07 15:31:28 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 15:31:28 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 15:31:28 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 15:31:57 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:31:57 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:31:57 - ConfigManager - INFO - Password updated successfully
+2025-08-07 15:32:34 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 15:32:34 - DatabaseManager - DEBUG - Disconnected from database: _local
+2025-08-07 15:32:34 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 15:32:34 - DatabaseManager - INFO - Found 214 tables in _local
+2025-08-07 15:33:03 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 15:33:03 - DatabaseManager - DEBUG - Disconnected from database: _cloud
+2025-08-07 15:33:03 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 15:33:03 - DatabaseManager - INFO - Found 214 tables in _cloud
+2025-08-07 15:33:48 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:33:48 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:33:48 - ConfigManager - INFO - Added database pair: TestHub
+2025-08-07 15:33:56 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:33:56 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:33:56 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:33:58 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:33:58 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:33:58 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:51:31 - root - INFO - Logging system initialized
+2025-08-07 15:51:31 - root - INFO - UI log handler added
+2025-08-07 15:51:31 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 15:51:31 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 15:51:31 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 15:51:45 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:51:45 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:51:45 - ConfigManager - INFO - Password updated successfully
+2025-08-07 15:52:36 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 15:52:36 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 15:52:36 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 15:52:36 - DatabaseManager - INFO - Found 214 tables in TestHub_local
+2025-08-07 15:53:03 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 15:53:03 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 15:53:03 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 15:53:03 - DatabaseManager - INFO - Found 214 tables in TestHub_cloud
+2025-08-07 15:53:23 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:53:23 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:53:23 - ConfigManager - INFO - Added database pair: TestHub
+2025-08-07 15:53:27 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:53:27 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:53:27 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:53:57 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:53:57 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:53:57 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:53:57 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 15:53:57 - root - INFO - Settings updated
+2025-08-07 15:54:25 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:54:25 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:54:25 - ConfigManager - INFO - Updated database pair: TestHub
+2025-08-07 15:54:41 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:54:41 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:54:41 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:55:00 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:55:00 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:55:00 - ConfigManager - INFO - Updated database pair: TestHub
+2025-08-07 15:55:16 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:55:16 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:55:16 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:55:27 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 15:55:27 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 15:55:27 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 15:55:27 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 15:55:27 - root - INFO - Settings updated
+2025-08-07 15:56:11 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 15:56:11 - SyncWorker - INFO - Setting up sync infrastructure...
+2025-08-07 15:56:11 - SyncWorker - INFO - Setting up infrastructure for: TestHub
+2025-08-07 15:56:11 - SyncEngine - INFO - Setting up sync infrastructure for TestHub
+2025-08-07 15:56:11 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 15:56:11 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 15:56:11 - SyncEngine - INFO - Setting up infrastructure for table: academic_years
+2025-08-07 15:56:11 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 15:56:12 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 15:56:12 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 15:56:12 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 15:56:12 - SyncEngine - INFO - Successfully set up infrastructure for academic_years
+2025-08-07 15:56:12 - SyncEngine - INFO - Sync infrastructure setup completed successfully
+2025-08-07 15:56:12 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 15:56:12 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 15:56:12 - SyncWorker - INFO - Successfully set up infrastructure for: TestHub
+2025-08-07 15:56:12 - SyncWorker - INFO - Sync infrastructure setup completed successfully
+2025-08-07 15:56:12 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-07 16:00:19 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 16:00:19 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 16:00:19 - ConfigManager - INFO - Updated database pair: TestHub
+2025-08-07 16:00:23 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 16:00:23 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 16:00:23 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 16:00:24 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 16:00:24 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 16:00:24 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 16:00:24 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 16:00:24 - root - INFO - Settings updated
+2025-08-07 16:00:48 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 16:00:48 - SyncWorker - INFO - Setting up sync infrastructure...
+2025-08-07 16:00:48 - SyncWorker - INFO - Setting up infrastructure for: TestHub
+2025-08-07 16:00:48 - SyncEngine - INFO - Setting up sync infrastructure for TestHub
+2025-08-07 16:00:48 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:00:48 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:00:48 - SyncEngine - INFO - Setting up infrastructure for table: academic_years
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 16:00:48 - SyncEngine - INFO - Successfully set up infrastructure for academic_years
+2025-08-07 16:00:48 - SyncEngine - INFO - Setting up infrastructure for table: achievements
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 16:00:48 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 16:00:48 - SyncEngine - INFO - Successfully set up infrastructure for achievements
+2025-08-07 16:00:48 - SyncEngine - INFO - Sync infrastructure setup completed successfully
+2025-08-07 16:00:48 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:00:48 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:00:48 - SyncWorker - INFO - Successfully set up infrastructure for: TestHub
+2025-08-07 16:00:48 - SyncWorker - INFO - Sync infrastructure setup completed successfully
+2025-08-07 16:00:48 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-07 16:01:49 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 16:01:49 - SyncWorker - INFO - Scheduled synchronization started
+2025-08-07 16:01:49 - root - INFO - Scheduled sync started with 300.0s interval
+2025-08-07 16:03:21 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 16:03:21 - SyncWorker - INFO - Manual sync started
+2025-08-07 16:03:21 - SyncWorker - INFO - Syncing database pair: TestHub
+2025-08-07 16:03:21 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:03:21 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - INFO - Found 214 tables in TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:03:21 - DatabaseManager - INFO - Found 214 tables in TestHub_cloud
+2025-08-07 16:03:21 - SyncEngine - INFO - Starting sync for database pair: TestHub
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:03:21 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:03:21 - SyncEngine - INFO - Syncing table academic_years with direction cloud_to_local
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 16:03:21 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 16:03:21 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 16:03:21 - SyncEngine - INFO - Syncing table achievements with direction local_to_cloud
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 16:03:21 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 16:03:21 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 16:03:21 - SyncEngine - INFO - Sync completed: 2/2 tables, 0 records synchronized
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:03:21 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:03:21 - SyncWorker - INFO - Completed TestHub: 2/2 tables, 0 records synced
+2025-08-07 16:03:21 - SyncWorker - INFO - Manual sync completed in 0.23s: 2 successful, 0 failed, 0 records synced
+2025-08-07 16:06:49 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 16:06:49 - SyncWorker - INFO - Syncing database pair: TestHub
+2025-08-07 16:06:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:06:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - INFO - Found 214 tables in TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:06:49 - DatabaseManager - INFO - Found 214 tables in TestHub_cloud
+2025-08-07 16:06:49 - SyncEngine - INFO - Starting sync for database pair: TestHub
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:06:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:06:49 - SyncEngine - INFO - Syncing table academic_years with direction cloud_to_local
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 16:06:49 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 16:06:49 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 16:06:49 - SyncEngine - INFO - Syncing table achievements with direction local_to_cloud
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 16:06:49 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 16:06:49 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 16:06:49 - SyncEngine - INFO - Sync completed: 2/2 tables, 0 records synchronized
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:06:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:06:49 - SyncWorker - INFO - Completed TestHub: 2/2 tables, 0 records synced
+2025-08-07 16:06:49 - SyncWorker - INFO - Scheduled sync completed in 0.13s: 2 successful, 0 failed, 0 records synced
+2025-08-07 16:11:42 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 16:11:42 - SyncWorker - INFO - Setting up sync infrastructure...
+2025-08-07 16:11:42 - SyncWorker - INFO - Setting up infrastructure for: TestHub
+2025-08-07 16:11:42 - SyncEngine - INFO - Setting up sync infrastructure for TestHub
+2025-08-07 16:11:42 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:11:42 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:11:42 - SyncEngine - INFO - Setting up infrastructure for table: academic_years
+2025-08-07 16:11:42 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 16:11:42 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 16:11:43 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 16:11:43 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 16:11:43 - SyncEngine - INFO - Successfully set up infrastructure for academic_years
+2025-08-07 16:11:43 - SyncEngine - INFO - Setting up infrastructure for table: achievements
+2025-08-07 16:11:43 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 16:11:43 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 16:11:43 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 16:11:43 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 16:11:43 - SyncEngine - INFO - Successfully set up infrastructure for achievements
+2025-08-07 16:11:43 - SyncEngine - INFO - Sync infrastructure setup completed successfully
+2025-08-07 16:11:43 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:11:43 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:11:43 - SyncWorker - INFO - Successfully set up infrastructure for: TestHub
+2025-08-07 16:11:43 - SyncWorker - INFO - Sync infrastructure setup completed successfully
+2025-08-07 16:11:43 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-07 16:11:49 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 16:11:49 - SyncWorker - INFO - Syncing database pair: TestHub
+2025-08-07 16:11:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:11:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - INFO - Found 214 tables in TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:11:49 - DatabaseManager - INFO - Found 214 tables in TestHub_cloud
+2025-08-07 16:11:49 - SyncEngine - INFO - Starting sync for database pair: TestHub
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:11:49 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:11:49 - SyncEngine - INFO - Syncing table academic_years with direction cloud_to_local
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 16:11:49 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 16:11:49 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 16:11:49 - SyncEngine - INFO - Syncing table achievements with direction local_to_cloud
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 16:11:49 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 16:11:49 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 16:11:49 - SyncEngine - INFO - Sync completed: 2/2 tables, 0 records synchronized
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:11:49 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:11:49 - SyncWorker - INFO - Completed TestHub: 2/2 tables, 0 records synced
+2025-08-07 16:11:49 - SyncWorker - INFO - Scheduled sync completed in 0.18s: 2 successful, 0 failed, 0 records synced
+2025-08-07 16:12:18 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:12:18 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:12:18 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:12:18 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:12:18 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:12:18 - DatabaseManager - INFO - Found 214 tables in TestHub_local
+2025-08-07 16:12:18 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:12:18 - DatabaseManager - INFO - Found 214 tables in TestHub_cloud
+2025-08-07 16:12:18 - SyncWorker - INFO - Configuration valid for TestHub
+2025-08-07 16:14:01 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 16:14:01 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 16:14:01 - ConfigManager - INFO - Updated database pair: TestHub
+2025-08-07 16:14:06 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 16:14:06 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 16:14:06 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 16:14:07 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 16:14:07 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 16:14:07 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 16:14:07 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 16:14:07 - root - INFO - Settings updated
+2025-08-07 16:14:26 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 16:14:26 - SyncWorker - INFO - Setting up sync infrastructure...
+2025-08-07 16:14:26 - SyncWorker - INFO - Setting up infrastructure for: TestHub
+2025-08-07 16:14:26 - SyncEngine - INFO - Setting up sync infrastructure for TestHub
+2025-08-07 16:14:26 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 16:14:26 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 16:14:26 - SyncEngine - INFO - Setting up infrastructure for table: academic_years
+2025-08-07 16:14:26 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 16:14:26 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 16:14:26 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 16:14:26 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 16:14:26 - SyncEngine - INFO - Successfully set up infrastructure for academic_years
+2025-08-07 16:14:26 - SyncEngine - INFO - Setting up infrastructure for table: achievements
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 16:14:27 - SyncEngine - INFO - Successfully set up infrastructure for achievements
+2025-08-07 16:14:27 - SyncEngine - INFO - Setting up infrastructure for table: activity_feed
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created changelog table: activity_feed_changelog
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created changelog table: activity_feed_changelog
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created triggers for table: activity_feed
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created triggers for table: activity_feed
+2025-08-07 16:14:27 - SyncEngine - INFO - Successfully set up infrastructure for activity_feed
+2025-08-07 16:14:27 - SyncEngine - INFO - Setting up infrastructure for table: activity_type
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created changelog table: activity_type_changelog
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created changelog table: activity_type_changelog
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created triggers for table: activity_type
+2025-08-07 16:14:27 - DatabaseManager - INFO - Created triggers for table: activity_type
+2025-08-07 16:14:27 - SyncEngine - INFO - Successfully set up infrastructure for activity_type
+2025-08-07 16:14:27 - SyncEngine - INFO - Sync infrastructure setup completed successfully
+2025-08-07 16:14:27 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 16:14:27 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 16:14:27 - SyncWorker - INFO - Successfully set up infrastructure for: TestHub
+2025-08-07 16:14:27 - SyncWorker - INFO - Sync infrastructure setup completed successfully
+2025-08-07 16:14:27 - SyncWorker - DEBUG - Status changed to: Stopped

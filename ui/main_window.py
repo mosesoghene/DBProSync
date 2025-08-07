@@ -17,7 +17,7 @@ from PySide6.QtWidgets import (
     QMenu, QMessageBox, QFileDialog
 )
 from PySide6.QtCore import Qt, QTimer, QThread, Signal
-from PySide6.QtGui import QFont, QAction, QIcon
+from PySide6.QtGui import QFont, QAction, QIcon, QColor
 
 from core.config_manager import ConfigManager
 from core.sync_worker import SyncWorker
@@ -556,12 +556,12 @@ class MainWindow(QMainWindow):
             # Name
             name_item = QTableWidgetItem(pair.name)
             if not pair.is_enabled:
-                name_item.setStyleSheet("color: gray;")
+                name_item.setForeground(QColor("gray"))
             self.pairs_table.setItem(i, 0, name_item)
 
             # Status
             status_item = QTableWidgetItem("Enabled" if pair.is_enabled else "Disabled")
-            status_item.setStyleSheet("color: green;" if pair.is_enabled else "color: gray;")
+            status_item.setForeground(QColor("green") if pair.is_enabled else QColor("gray"))
             self.pairs_table.setItem(i, 1, status_item)
 
             # Last sync
