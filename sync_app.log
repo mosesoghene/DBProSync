@@ -61,3 +61,52 @@
 2025-08-07 09:00:57 - SettingsDialog - INFO - Settings saved successfully
 2025-08-07 09:00:57 - SyncWorker - INFO - Configured 0 database pairs for sync
 2025-08-07 09:00:57 - root - INFO - Settings updated
+2025-08-07 12:51:46 - root - INFO - Logging system initialized
+2025-08-07 12:51:46 - root - INFO - UI log handler added
+2025-08-07 12:51:46 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 12:51:46 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 12:51:46 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 12:52:26 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 12:52:26 - DatabaseManager - DEBUG - Disconnected from database: _local
+2025-08-07 12:52:26 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 12:52:26 - DatabaseManager - INFO - Found 214 tables in _local
+2025-08-07 12:53:13 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 12:53:13 - DatabaseManager - DEBUG - Disconnected from database: _cloud
+2025-08-07 12:53:13 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 12:53:13 - DatabaseManager - INFO - Found 214 tables in _cloud
+2025-08-07 12:54:31 - root - INFO - Logging system initialized
+2025-08-07 12:54:31 - root - INFO - UI log handler added
+2025-08-07 12:54:31 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 12:54:31 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 12:54:31 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 12:57:51 - root - INFO - Logging system initialized
+2025-08-07 12:57:51 - root - INFO - UI log handler added
+2025-08-07 12:57:51 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 12:57:51 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 12:57:51 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 12:58:21 - root - INFO - Logging system initialized
+2025-08-07 12:58:21 - root - INFO - UI log handler added
+2025-08-07 12:58:21 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 12:58:21 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 12:58:21 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 12:58:33 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-07 12:58:33 - root - INFO - UI log handler removed
+2025-08-07 12:59:54 - root - INFO - Logging system initialized
+2025-08-07 12:59:54 - root - INFO - UI log handler added
+2025-08-07 12:59:54 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 12:59:54 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 12:59:54 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:00:20 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-07 13:00:20 - root - INFO - UI log handler removed
+2025-08-07 13:06:21 - root - INFO - Logging system initialized
+2025-08-07 13:06:21 - root - INFO - UI log handler added
+2025-08-07 13:06:21 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 13:06:21 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 13:06:21 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:23:32 - root - INFO - Logging system initialized
+2025-08-07 13:23:32 - root - INFO - UI log handler added
+2025-08-07 13:23:32 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 13:23:32 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 13:23:32 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 13:25:03 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-07 13:25:03 - root - INFO - UI log handler removed

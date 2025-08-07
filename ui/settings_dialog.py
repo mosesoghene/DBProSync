@@ -21,7 +21,8 @@ from core.config_manager import ConfigManager
 from core.models import DatabasePair, SyncDirection
 from .database_connection_dialog import DatabaseConnectionDialog
 from utils.constants import (
-    SUPPORTED_DATABASES, DEFAULT_SYNC_INTERVAL, VALIDATION_RULES
+    SUPPORTED_DATABASES, DEFAULT_SYNC_INTERVAL, VALIDATION_RULES, WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT,
+
 )
 
 
@@ -47,7 +48,7 @@ class SettingsDialog(QDialog):
         """Set up the user interface."""
         self.setWindowTitle("Database Sync Settings")
         self.setModal(True)
-        self.resize(900, 700)
+        self.resize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
 
         # Main layout
         layout = QVBoxLayout(self)

@@ -95,8 +95,8 @@ ON {changelog_table} (database_id);
 """
 
 # UI Constants
-WINDOW_MIN_WIDTH = 1000
-WINDOW_MIN_HEIGHT = 700
+WINDOW_MIN_WIDTH = 800
+WINDOW_MIN_HEIGHT = 600
 LOG_VIEWER_MAX_HEIGHT = 200
 REFRESH_INTERVAL = 5000  # 5 seconds in milliseconds
 

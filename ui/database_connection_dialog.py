@@ -21,7 +21,7 @@ from PySide6.QtGui import QFont
 from core.models import DatabaseConfig, DatabasePair, TableSyncConfig, SyncDirection, DatabaseType
 from utils.constants import (
     SUPPORTED_DATABASES, DEFAULT_MYSQL_PORT, DEFAULT_POSTGRESQL_PORT,
-    VALIDATION_RULES
+    VALIDATION_RULES, WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT
 )
 
 
@@ -88,7 +88,7 @@ class DatabaseConnectionDialog(QDialog):
         title = "Edit Database Pair" if self.is_editing else "Add Database Pair"
         self.setWindowTitle(title)
         self.setModal(True)
-        self.resize(1000, 700)
+        self.resize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
 
         # Main layout
         main_layout = QVBoxLayout(self)
@@ -113,6 +113,8 @@ class DatabaseConnectionDialog(QDialog):
 
         # Set splitter proportions
         splitter.setSizes([300, 400])
+        splitter.setCollapsible(0, False)
+        splitter.setCollapsible(1, False)
         main_layout.addWidget(splitter)
 
         # Sync interval and options
@@ -252,7 +254,7 @@ class DatabaseConnectionDialog(QDialog):
 
         # Status area
         self.status_text = QTextEdit()
-        self.status_text.setMaximumHeight(100)
+        self.status_text.setMinimumHeight(250)
         self.status_text.setReadOnly(True)
         self.status_text.setFont(QFont("Consolas", 9))
         layout.addWidget(QLabel("Status:"))

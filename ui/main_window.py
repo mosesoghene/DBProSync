@@ -27,7 +27,7 @@ from .password_dialog import PasswordDialog
 from .settings_dialog import SettingsDialog
 from utils.constants import (
     WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT, LOG_VIEWER_MAX_HEIGHT,
-    REFRESH_INTERVAL, STATUS_MESSAGES, ERROR_MESSAGES
+    REFRESH_INTERVAL, STATUS_MESSAGES, ERROR_MESSAGES,
 )
 
 
@@ -64,8 +64,7 @@ class MainWindow(QMainWindow):
     def setup_ui(self):
         """Set up the user interface."""
         self.setWindowTitle("Database Synchronization Tool")
-        self.setMinimumSize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
-        self.resize(1200, 800)
+        self.resize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
 
         # Create central widget
         central_widget = QWidget()
