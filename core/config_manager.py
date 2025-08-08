@@ -147,12 +147,7 @@ class ConfigManager:
             return False
 
     def save_config(self) -> bool:
-        """
-        Save current configuration to file.
-
-        Returns:
-            True if saved successfully, False otherwise
-        """
+        """Save current configuration to file."""
         try:
             # Create backup of existing config
             if self.config_file.exists() and self._config.backup_enabled:
@@ -160,9 +155,13 @@ class ConfigManager:
                 self.config_file.replace(backup_file)
                 self.logger.debug(f"Created config backup: {backup_file}")
 
+            # Debug: Check for enum objects before saving
+            config_dict = self._config.to_dict()
+            self._check_for_enums(config_dict)  # Add this debug method
+
             # Save current config
             with open(self.config_file, 'w', encoding='utf-8') as f:
-                json.dump(self._config.to_dict(), f, cls=CustomEncoder, indent=4, ensure_ascii=False)
+                json.dump(config_dict, f, indent=4, ensure_ascii=False)
 
             self.logger.info(f"Configuration saved to {self.config_file}")
             return True
@@ -170,6 +169,17 @@ class ConfigManager:
         except Exception as e:
             self.logger.error(f"Failed to save config: {e}")
             return False
+
+    def _check_for_enums(self, obj, path=""):
+        """Debug method to find enum objects in data structure."""
+        if isinstance(obj, dict):
+            for key, value in obj.items():
+                self._check_for_enums(value, f"{path}.{key}")
+        elif isinstance(obj, list):
+            for i, item in enumerate(obj):
+                self._check_for_enums(item, f"{path}[{i}]")
+        elif hasattr(obj, '__class__') and 'Enum' in str(obj.__class__):
+            self.logger.error(f"Found enum at {path}: {obj} ({type(obj)})")
 
     def add_database_pair(self, db_pair: DatabasePair) -> bool:
         """

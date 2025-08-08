@@ -445,3 +445,711 @@
 2025-08-07 16:14:27 - SyncWorker - INFO - Successfully set up infrastructure for: TestHub
 2025-08-07 16:14:27 - SyncWorker - INFO - Sync infrastructure setup completed successfully
 2025-08-07 16:14:27 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-07 20:04:03 - root - INFO - Logging system initialized
+2025-08-07 20:04:03 - root - INFO - UI log handler added
+2025-08-07 20:04:03 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 20:04:03 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 20:04:03 - ui.main_window - INFO - Loaded 1 database pairs
+2025-08-07 20:04:50 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:04:50 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:04:50 - ConfigManager - INFO - Updated database pair: TestHub
+2025-08-07 20:04:56 - DatabaseManager - INFO - Connected to mysql database: TestHub_local
+2025-08-07 20:04:56 - DatabaseManager - DEBUG - Disconnected from database: TestHub_local
+2025-08-07 20:04:56 - DatabaseManager - INFO - Connected to mysql database: TestHub_cloud
+2025-08-07 20:04:56 - DatabaseManager - DEBUG - Disconnected from database: TestHub_cloud
+2025-08-07 20:05:00 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:05:00 - ConfigManager - ERROR - Failed to save config: Object of type SyncDirection is not JSON serializable
+2025-08-07 20:05:00 - ConfigManager - INFO - Added database pair: TestHub (Copy)
+2025-08-07 20:05:12 - ConfigManager - WARNING - Database pair with ID '9ba58698-1712-4337-92a9-1a45af303df4' not found
+2025-08-07 20:05:31 - ConfigManager - WARNING - Database pair with ID '5a52bd66-6305-4121-a487-1bc3c1e175b4' not found
+2025-08-07 20:05:38 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:05:38 - ConfigManager - ERROR - Failed to save config: Object of type SyncDirection is not JSON serializable
+2025-08-07 20:11:17 - root - INFO - Logging system initialized
+2025-08-07 20:11:17 - root - INFO - UI log handler added
+2025-08-07 20:11:17 - SyncWorker - INFO - Configured 0 database pairs for sync
+2025-08-07 20:11:17 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-07 20:11:17 - ui.main_window - INFO - Loaded 0 database pairs
+2025-08-07 20:11:36 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:11:36 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:11:36 - ConfigManager - INFO - Password updated successfully
+2025-08-07 20:12:48 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 20:12:48 - DatabaseManager - DEBUG - Disconnected from database: _local
+2025-08-07 20:12:48 - DatabaseManager - INFO - Connected to mysql database: _local
+2025-08-07 20:12:48 - DatabaseManager - INFO - Found 214 tables in _local
+2025-08-07 20:13:18 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 20:13:18 - DatabaseManager - DEBUG - Disconnected from database: _cloud
+2025-08-07 20:13:18 - DatabaseManager - INFO - Connected to mysql database: _cloud
+2025-08-07 20:13:19 - DatabaseManager - INFO - Found 214 tables in _cloud
+2025-08-07 20:13:52 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:13:52 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:13:52 - ConfigManager - INFO - Added database pair: Testing Hub
+2025-08-07 20:13:56 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:13:56 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:13:56 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 20:15:02 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:15:02 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:15:02 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 20:15:26 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:15:26 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:15:26 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 20:15:26 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 20:15:26 - root - INFO - Settings updated
+2025-08-07 20:15:46 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 20:15:46 - SyncWorker - INFO - Scheduled synchronization started
+2025-08-07 20:15:46 - root - INFO - Scheduled sync started with 300.0s interval
+2025-08-07 20:17:39 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 20:17:39 - SyncWorker - INFO - Setting up sync infrastructure...
+2025-08-07 20:17:39 - SyncWorker - INFO - Setting up infrastructure for: Testing Hub
+2025-08-07 20:17:39 - SyncEngine - INFO - Setting up sync infrastructure for Testing Hub
+2025-08-07 20:17:39 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:17:39 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:17:39 - SyncEngine - INFO - Setting up infrastructure for table: academic_years
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 20:17:39 - SyncEngine - INFO - Successfully set up infrastructure for academic_years
+2025-08-07 20:17:39 - SyncEngine - INFO - Setting up infrastructure for table: achievements
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 20:17:39 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 20:17:40 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 20:17:40 - SyncEngine - INFO - Successfully set up infrastructure for achievements
+2025-08-07 20:17:40 - SyncEngine - INFO - Setting up infrastructure for table: activity_feed
+2025-08-07 20:17:40 - DatabaseManager - INFO - Created changelog table: activity_feed_changelog
+2025-08-07 20:17:40 - DatabaseManager - INFO - Created changelog table: activity_feed_changelog
+2025-08-07 20:17:40 - DatabaseManager - INFO - Created triggers for table: activity_feed
+2025-08-07 20:17:40 - DatabaseManager - INFO - Created triggers for table: activity_feed
+2025-08-07 20:17:40 - SyncEngine - INFO - Successfully set up infrastructure for activity_feed
+2025-08-07 20:17:40 - SyncEngine - INFO - Sync infrastructure setup completed successfully
+2025-08-07 20:17:40 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:17:40 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:17:40 - SyncWorker - INFO - Successfully set up infrastructure for: Testing Hub
+2025-08-07 20:17:40 - SyncWorker - INFO - Sync infrastructure setup completed successfully
+2025-08-07 20:17:40 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-07 20:17:44 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 20:17:44 - SyncWorker - INFO - Manual sync started
+2025-08-07 20:17:44 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:17:44 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:17:44 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:17:44 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:17:44 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:17:44 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:17:45 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:17:45 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:17:45 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:17:45 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:17:45 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:17:45 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:17:45 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:17:45 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:17:45 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:17:45 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:17:45 - SyncEngine - INFO - Sync completed: 3/3 tables, 0 records synchronized
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:17:45 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:17:45 - SyncWorker - INFO - Completed Testing Hub: 3/3 tables, 0 records synced
+2025-08-07 20:17:45 - SyncWorker - INFO - Manual sync completed in 0.23s: 3 successful, 0 failed, 0 records synced
+2025-08-07 20:18:31 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:18:31 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:18:31 - ConfigManager - INFO - Updated database pair: Testing Hub
+2025-08-07 20:18:35 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:18:35 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:18:35 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 20:18:37 - ConfigManager - DEBUG - Created config backup: config.json.bak
+2025-08-07 20:18:37 - ConfigManager - INFO - Configuration saved to config.json
+2025-08-07 20:18:37 - SettingsDialog - INFO - Settings saved successfully
+2025-08-07 20:18:37 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-07 20:18:37 - root - INFO - Settings updated
+2025-08-07 20:18:40 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 20:18:40 - SyncWorker - INFO - Setting up sync infrastructure...
+2025-08-07 20:18:40 - SyncWorker - INFO - Setting up infrastructure for: Testing Hub
+2025-08-07 20:18:40 - SyncEngine - INFO - Setting up sync infrastructure for Testing Hub
+2025-08-07 20:18:40 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:18:40 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:18:40 - SyncEngine - INFO - Setting up infrastructure for table: academic_years
+2025-08-07 20:18:40 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 20:18:40 - DatabaseManager - INFO - Created changelog table: academic_years_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: academic_years
+2025-08-07 20:18:41 - SyncEngine - INFO - Successfully set up infrastructure for academic_years
+2025-08-07 20:18:41 - SyncEngine - INFO - Setting up infrastructure for table: achievements
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created changelog table: achievements_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: achievements
+2025-08-07 20:18:41 - SyncEngine - INFO - Successfully set up infrastructure for achievements
+2025-08-07 20:18:41 - SyncEngine - INFO - Setting up infrastructure for table: activity_feed
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created changelog table: activity_feed_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created changelog table: activity_feed_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: activity_feed
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: activity_feed
+2025-08-07 20:18:41 - SyncEngine - INFO - Successfully set up infrastructure for activity_feed
+2025-08-07 20:18:41 - SyncEngine - INFO - Setting up infrastructure for table: subjects
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created changelog table: subjects_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created changelog table: subjects_changelog
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: subjects
+2025-08-07 20:18:41 - DatabaseManager - INFO - Created triggers for table: subjects
+2025-08-07 20:18:41 - SyncEngine - INFO - Successfully set up infrastructure for subjects
+2025-08-07 20:18:41 - SyncEngine - INFO - Sync infrastructure setup completed successfully
+2025-08-07 20:18:41 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:18:41 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:18:41 - SyncWorker - INFO - Successfully set up infrastructure for: Testing Hub
+2025-08-07 20:18:41 - SyncWorker - INFO - Sync infrastructure setup completed successfully
+2025-08-07 20:18:41 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-07 20:20:46 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 20:20:46 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:20:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:20:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:20:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:20:46 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:20:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:20:46 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:20:46 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:20:46 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:20:46 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Found 1 pending changes for subjects
+2025-08-07 20:20:46 - SyncEngine - INFO - Found 1 pending changes for subjects
+2025-08-07 20:20:46 - SyncEngine - INFO - Updated record in subjects: {'id': 729}
+2025-08-07 20:20:46 - SyncEngine - ERROR - Failed one-way sync for subjects: DatabaseManager.mark_changes_synced() missing 1 required positional argument: 'change_ids'
+2025-08-07 20:20:46 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-07 20:20:46 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:20:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:20:46 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-07 20:20:46 - SyncWorker - INFO - Scheduled sync completed in 0.24s: 4 successful, 0 failed, 0 records synced
+2025-08-07 20:21:29 - SyncWorker - DEBUG - Status changed to: Running
+2025-08-07 20:21:29 - SyncWorker - INFO - Manual sync started
+2025-08-07 20:21:29 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:21:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:21:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:21:29 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:21:29 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:21:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:21:29 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:21:29 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:21:29 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:21:29 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-07 20:21:29 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-07 20:21:29 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:21:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:21:29 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-07 20:21:29 - SyncWorker - INFO - Manual sync completed in 0.19s: 4 successful, 0 failed, 0 records synced
+2025-08-07 20:25:46 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 20:25:46 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:25:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:25:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:25:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:25:46 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:25:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:25:46 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:25:46 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:25:46 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:25:46 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Found 1 pending changes for subjects
+2025-08-07 20:25:46 - SyncEngine - INFO - Found 1 pending changes for subjects
+2025-08-07 20:25:46 - SyncEngine - INFO - Updated record in subjects: {'id': 731}
+2025-08-07 20:25:46 - SyncEngine - ERROR - Failed one-way sync for subjects: DatabaseManager.mark_changes_synced() missing 1 required positional argument: 'change_ids'
+2025-08-07 20:25:46 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-07 20:25:46 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:25:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:25:46 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-07 20:25:46 - SyncWorker - INFO - Scheduled sync completed in 0.23s: 4 successful, 0 failed, 0 records synced
+2025-08-07 20:30:46 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 20:30:46 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:30:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:30:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:30:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:30:46 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:30:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:30:46 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:30:46 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:30:46 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:30:46 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-07 20:30:46 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-07 20:30:46 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:30:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:30:46 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-07 20:30:46 - SyncWorker - INFO - Scheduled sync completed in 0.24s: 4 successful, 0 failed, 0 records synced
+2025-08-07 20:35:46 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 20:35:46 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:35:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:35:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:35:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:35:46 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:35:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:35:46 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:35:46 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:35:46 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:35:46 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-07 20:35:46 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-07 20:35:46 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:35:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:35:46 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-07 20:35:46 - SyncWorker - INFO - Scheduled sync completed in 0.27s: 4 successful, 0 failed, 0 records synced
+2025-08-07 20:40:46 - SyncWorker - INFO - Scheduled sync started
+2025-08-07 20:40:46 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-07 20:40:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:40:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:40:46 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-07 20:40:46 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:40:46 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-07 20:40:46 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-07 20:40:46 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-07 20:40:46 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-07 20:40:46 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-07 20:40:46 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-07 20:40:46 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-07 20:40:46 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-07 20:40:46 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-07 20:40:46 - SyncWorker - INFO - Scheduled sync completed in 0.24s: 4 successful, 0 failed, 0 records synced
+2025-08-08 07:40:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 07:40:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 07:40:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:40:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:40:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:40:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:40:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:40:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 07:40:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:40:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 07:40:29 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:40:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:40:29 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:40:29 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 07:40:29 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 07:40:29 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 07:40:29 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 07:40:29 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 07:40:29 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:40:29 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:40:29 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 07:40:29 - SyncWorker - INFO - Scheduled sync completed in 0.60s: 4 successful, 0 failed, 0 records synced
+2025-08-08 07:45:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 07:45:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 07:45:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:45:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:45:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 07:45:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:45:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:45:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 07:45:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 07:45:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 07:45:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 07:45:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 07:45:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:45:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:45:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 07:45:28 - SyncWorker - INFO - Scheduled sync completed in 0.28s: 4 successful, 0 failed, 0 records synced
+2025-08-08 07:50:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 07:50:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 07:50:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:50:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:50:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 07:50:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:50:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:50:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 07:50:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 07:50:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 07:50:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 07:50:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 07:50:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:50:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:50:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 07:50:28 - SyncWorker - INFO - Scheduled sync completed in 0.20s: 4 successful, 0 failed, 0 records synced
+2025-08-08 07:55:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 07:55:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 07:55:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:55:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:55:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 07:55:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:55:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 07:55:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 07:55:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 07:55:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 07:55:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 07:55:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 07:55:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 07:55:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 07:55:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 07:55:28 - SyncWorker - INFO - Scheduled sync completed in 0.22s: 4 successful, 0 failed, 0 records synced
+2025-08-08 08:00:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 08:00:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 08:00:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:00:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:00:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 08:00:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:00:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:00:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 08:00:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 08:00:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 08:00:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 08:00:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 08:00:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:00:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:00:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 08:00:28 - SyncWorker - INFO - Scheduled sync completed in 0.20s: 4 successful, 0 failed, 0 records synced
+2025-08-08 08:05:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 08:05:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 08:05:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:05:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:05:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 08:05:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:05:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:05:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 08:05:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 08:05:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 08:05:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 08:05:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 08:05:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:05:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:05:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 08:05:28 - SyncWorker - INFO - Scheduled sync completed in 0.18s: 4 successful, 0 failed, 0 records synced
+2025-08-08 08:10:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 08:10:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 08:10:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:10:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:10:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 08:10:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:10:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:10:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 08:10:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 08:10:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 08:10:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 08:10:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 08:10:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:10:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:10:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 08:10:28 - SyncWorker - INFO - Scheduled sync completed in 0.24s: 4 successful, 0 failed, 0 records synced
+2025-08-08 08:15:28 - SyncWorker - INFO - Scheduled sync started
+2025-08-08 08:15:28 - SyncWorker - INFO - Syncing database pair: Testing Hub
+2025-08-08 08:15:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:15:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:15:28 - DatabaseManager - INFO - Found 214 tables in Testing Hub_cloud
+2025-08-08 08:15:28 - SyncEngine - INFO - Starting sync for database pair: Testing Hub
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:15:28 - DatabaseManager - INFO - Connected to mysql database: Testing Hub_cloud
+2025-08-08 08:15:28 - SyncEngine - INFO - Syncing table academic_years with direction bidirectional
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Found 0 pending changes for academic_years
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No pending changes for table academic_years
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No changes to sync for table academic_years
+2025-08-08 08:15:28 - SyncEngine - INFO - Syncing table achievements with direction cloud_to_local
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Found 0 pending changes for achievements
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No pending changes for table achievements
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No changes to sync for table achievements
+2025-08-08 08:15:28 - SyncEngine - INFO - Syncing table activity_feed with direction local_to_cloud
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Found 0 pending changes for activity_feed
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No pending changes for table activity_feed
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No changes to sync for table activity_feed
+2025-08-08 08:15:28 - SyncEngine - INFO - Syncing table subjects with direction local_to_cloud
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Found 0 pending changes for subjects
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No pending changes for table subjects
+2025-08-08 08:15:28 - SyncEngine - DEBUG - No changes to sync for table subjects
+2025-08-08 08:15:28 - SyncEngine - INFO - Sync completed: 4/4 tables, 0 records synchronized
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_local
+2025-08-08 08:15:28 - DatabaseManager - DEBUG - Disconnected from database: Testing Hub_cloud
+2025-08-08 08:15:28 - SyncWorker - INFO - Completed Testing Hub: 4/4 tables, 0 records synced
+2025-08-08 08:15:28 - SyncWorker - INFO - Scheduled sync completed in 0.19s: 4 successful, 0 failed, 0 records synced
+2025-08-08 08:16:44 - SyncEngine - INFO - Stopping synchronization...
+2025-08-08 08:16:44 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-08-08 08:16:44 - SyncWorker - INFO - Scheduled synchronization stopped
+2025-08-08 08:16:44 - root - INFO - Scheduled sync stopped
+2025-08-08 08:16:44 - SyncEngine - INFO - Stopping synchronization...
+2025-08-08 08:16:44 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-08 08:16:44 - root - INFO - UI log handler removed

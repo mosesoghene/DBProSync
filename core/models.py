@@ -94,15 +94,29 @@ class TableSyncConfig:
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
-        data = asdict(self)
-        data['sync_direction'] = self.sync_direction.value
-        return data
+        return {
+            'table_name': self.table_name,
+            'sync_direction': self.sync_direction.value,  # Convert enum to string
+            'last_sync': self.last_sync,
+            'is_enabled': self.is_enabled,
+            'conflict_resolution': self.conflict_resolution
+        }
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'TableSyncConfig':
         """Create instance from dictionary."""
-        data['sync_direction'] = SyncDirection(data['sync_direction'])
-        return cls(**data)
+        # Convert string back to enum
+        sync_direction = data['sync_direction']
+        if isinstance(sync_direction, str):
+            sync_direction = SyncDirection(sync_direction)
+
+        return cls(
+            table_name=data['table_name'],
+            sync_direction=sync_direction,
+            last_sync=data.get('last_sync'),
+            is_enabled=data.get('is_enabled', True),
+            conflict_resolution=data.get('conflict_resolution', 'newer_wins')
+        )
 
 
 @dataclass
@@ -129,7 +143,7 @@ class DatabasePair:
             'name': self.name,
             'local_db': self.local_db.to_dict(),
             'cloud_db': self.cloud_db.to_dict(),
-            'tables': [table.to_dict() for table in self.tables],
+            'tables': [table.to_dict() for table in self.tables],  # This calls TableSyncConfig.to_dict()
             'sync_interval': self.sync_interval,
             'is_enabled': self.is_enabled,
             'last_sync': self.last_sync

@@ -2,11 +2,11 @@
     "app_password_hash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1",
     "database_pairs": [
         {
-            "id": "907cee66-ace2-4af9-8866-03a4da330f0a",
-            "name": "TestHub",
+            "id": "75f5fe45-38c5-422b-ab0d-a0240a47b013",
+            "name": "Testing Hub",
             "local_db": {
-                "id": "44c07456-c1a3-4c2c-a0af-022b3387a1a7",
-                "name": "TestHub_local",
+                "id": "a7fe1df0-449c-4906-a20d-0e4ccb444d60",
+                "name": "Testing Hub_local",
                 "db_type": "mysql",
                 "host": "localhost",
                 "port": 3306,
@@ -17,8 +17,8 @@
                 "connection_timeout": 30
             },
             "cloud_db": {
-                "id": "50f2f96b-916d-45cb-a9d6-ad8bed5c4e3e",
-                "name": "TestHub_cloud",
+                "id": "37279978-2c96-4192-8131-ec194fa97c3f",
+                "name": "Testing Hub_cloud",
                 "db_type": "mysql",
                 "host": "localhost",
                 "port": 3306,
@@ -31,14 +31,14 @@
             "tables": [
                 {
                     "table_name": "academic_years",
-                    "sync_direction": "local_to_cloud",
+                    "sync_direction": "bidirectional",
                     "last_sync": null,
                     "is_enabled": true,
                     "conflict_resolution": "newer_wins"
                 },
                 {
                     "table_name": "achievements",
-                    "sync_direction": "local_to_cloud",
+                    "sync_direction": "cloud_to_local",
                     "last_sync": null,
                     "is_enabled": true,
                     "conflict_resolution": "newer_wins"
@@ -52,7 +52,7 @@
                 },
                 {
                     "table_name": "activity_type",
-                    "sync_direction": "local_to_cloud",
+                    "sync_direction": "no_sync",
                     "last_sync": null,
                     "is_enabled": true,
                     "conflict_resolution": "newer_wins"
@@ -1396,7 +1396,7 @@
                 },
                 {
                     "table_name": "subjects",
-                    "sync_direction": "no_sync",
+                    "sync_direction": "local_to_cloud",
                     "last_sync": null,
                     "is_enabled": true,
                     "conflict_resolution": "newer_wins"
@@ -1533,8 +1533,8 @@
             "last_sync": null
         }
     ],
-    "log_level": "INFO",
-    "auto_start": true,
+    "log_level": "ERROR",
+    "auto_start": false,
     "default_sync_interval": 300,
     "max_log_size": 10,
     "backup_enabled": true
