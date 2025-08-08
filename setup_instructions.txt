@@ -1,0 +1,199 @@
+# Database Sync Tool - Build and Installation Guide
+
+## Requirements
+
+### Python Dependencies
+Create a `requirements.txt` file:
+
+```
+PySide6>=6.6.0
+pymysql>=1.1.0
+psycopg2-binary>=2.9.7
+pyinstaller>=6.0.0
+pywin32>=306; sys_platform == "win32"
+```
+
+### System Requirements
+- Windows 10 version 1809 (build 17763) or later
+- Python 3.8 or higher
+- Administrative privileges for installation
+- Inno Setup 6+ (for creating installer)
+
+## Project Structure
+
+Ensure your project structure looks like this:
+
+```
+database-sync-tool/
+├── assets/
+│   └── icon.ico
+├── core/
+│   ├── __init__.py
+│   ├── config_manager.py
+│   ├── database_manager.py
+│   ├── models.py
+│   ├── sync_engine.py
+│   └── sync_worker.py
+├── ui/
+│   ├── __init__.py
+│   ├── database_connection_dialog.py
+│   ├── log_handler.py
+│   ├── main_window.py
+│   ├── password_dialog.py
+│   ├── settings_dialog.py
+│   └── system_tray.py
+├── utils/
+│   ├── __init__.py
+│   ├── constants.py
+│   ├── custom_encoder.py
+│   └── startup_manager.py
+├── main.py
+├── build.py
+├── installer.iss
+├── requirements.txt
+└── config.json
+```
+
+## Build Process
+
+### Step 1: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 2: Install Inno Setup
+1. Download from https://jrsoftware.org/isinfo.php
+2. Install to default location
+3. Ensure `iscc.exe` is in your PATH
+
+### Step 3: Build the Application
+
+```bash
+# Clean build (recommended)
+python build.py --clean
+
+# Debug build (for troubleshooting)
+python build.py --debug
+
+# Build executable only (skip installer)
+python build.py --no-installer
+
+# Build installer only (if executable already exists)
+python build.py --installer-only
+```
+
+### Step 4: Distribution
+
+The build process creates:
+- `dist/DatabaseSyncTool/DatabaseSyncTool.exe` - Standalone executable
+- `dist/installer/DatabaseSyncTool_Setup_v1.0.0.exe` - Windows installer
+
+## Installation Options
+
+### Option 1: Use the Installer (Recommended)
+1. Run `DatabaseSyncTool_Setup_v1.0.0.exe` as Administrator
+2. Follow the installation wizard
+3. Choose installation options:
+   - Desktop shortcut
+   - Quick launch icon
+   - Start with Windows
+   - Auto-sync on startup
+
+### Option 2: Portable Installation
+1. Copy the entire `dist/DatabaseSyncTool/` folder to desired location
+2. Run `DatabaseSyncTool.exe` directly
+3. Manually configure Windows startup if needed
+
+## First Run Setup
+
+1. **Password Setup**: Set a secure password (default is 'admin')
+2. **Database Configuration**: Add your database pairs in Settings
+3. **Infrastructure Setup**: Click "Setup Infrastructure" to create changelog tables
+4. **Start Sync**: Begin synchronization
+
+## System Tray Features
+
+- **Minimize to Tray**: Close button minimizes to tray instead of exiting
+- **Tray Menu**: Right-click for sync controls
+- **Notifications**: Status updates and sync completion alerts
+- **Auto-start**: Optional startup with Windows
+
+## Command Line Arguments
+
+```bash
+# Start minimized to tray
+DatabaseSyncTool.exe --minimized
+
+# Start with auto-sync enabled
+DatabaseSyncTool.exe --minimized --auto-sync
+```
+
+## Troubleshooting
+
+### Build Issues
+
+1. **PyInstaller errors**: Check Python version and dependencies
+2. **Missing modules**: Add to `hiddenimports` in build script
+3. **Icon not found**: Ensure `assets/icon.ico` exists
+4. **Permission errors**: Run as Administrator
+
+### Runtime Issues
+
+1. **System tray not working**: Check Windows notification settings
+2. **Database connection failures**: Verify drivers and network
+3. **Startup not working**: Check Windows registry permissions
+4. **Sync errors**: Review logs in the application
+
+### Log Files
+
+Application logs are stored in:
+- Installation: `%ProgramFiles%\Database Sync Tool\logs\`
+- Portable: `logs\` folder next to executable
+
+## Development Setup
+
+For development without building:
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run directly
+python main.py
+
+# Run minimized
+python main.py --minimized
+
+# Run with auto-sync
+python main.py --minimized --auto-sync
+```
+
+## Deployment Checklist
+
+Before distributing:
+
+- [ ] Test on clean Windows 10/11 systems
+- [ ] Verify database drivers work correctly
+- [ ] Test system tray functionality
+- [ ] Validate installer uninstall process
+- [ ] Check Windows Defender compatibility
+- [ ] Test startup integration
+- [ ] Verify all features work without Python installed
+
+## Security Considerations
+
+- Passwords are hashed using SHA-256
+- Database credentials stored in local config file
+- Config export option excludes passwords by default
+- Administrative privileges only required for installation
+- No network communication except to configured databases
+
+## Support
+
+For issues:
+1. Check log files first
+2. Try running as Administrator
+3. Verify Windows version compatibility
+4. Test database connections manually
+5. Review Windows Event Viewer for system-level errors

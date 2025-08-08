@@ -1,0 +1,196 @@
+#define MyAppName "Database Sync Tool"
+#define MyAppVersion "1.0.0"
+#define MyAppPublisher "Moses Oghene"
+#define MyAppURL "https://github.com/yourusername/database-sync-tool"
+#define MyAppExeName "DatabaseSyncTool.exe"
+#define MyAppId "{B8F4C8A0-8B4C-4C8A-8B4C-8B4C8A0B4C8A}"
+
+[Setup]
+AppId={{#MyAppId}
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={autopf}\{#MyAppName}
+DisableProgramGroupPage=yes
+LicenseFile=LICENSE.txt
+InfoBeforeFile=README.txt
+OutputDir=dist\installer
+OutputBaseFilename=DatabaseSyncTool_Setup_v{#MyAppVersion}
+SetupIconFile=assets\icon.ico
+Compression=lzma
+SolidCompression=yes
+WizardStyle=modern
+PrivilegesRequired=admin
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
+MinVersion=10.0.17763
+UninstallDisplayIcon={app}\{#MyAppExeName}
+VersionInfoVersion={#MyAppVersion}
+VersionInfoCompany={#MyAppPublisher}
+VersionInfoDescription={#MyAppName} Installer
+VersionInfoCopyright=Copyright (C) 2024 {#MyAppPublisher}
+
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
+Name: "startupicon"; Description: "Start {#MyAppName} automatically when Windows starts"; GroupDescription: "Startup Options"; Flags: unchecked
+Name: "autostart"; Description: "Enable auto-sync on startup (requires startup icon)"; GroupDescription: "Startup Options"; Flags: unchecked
+
+[Files]
+; Main executable and Python runtime
+Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\_internal\*"; DestDir: "{app}\_internal"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+; Application assets
+Source: "assets\*"; DestDir: "{app}\assets"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "config.json.template"; DestDir: "{app}"; DestName: "config.json.template"; Flags: ignoreversion
+
+; Documentation
+Source: "README.md"; DestDir: "{app}"; DestName: "README.txt"; Flags: ignoreversion
+Source: "LICENSE"; DestDir: "{app}"; DestName: "LICENSE.txt"; Flags: ignoreversion
+
+; Visual C++ Redistributables (if needed)
+Source: "redist\VC_redist.x64.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Check: VCRedistNeedsInstall
+
+[Icons]
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
+
+[Registry]
+; Add to Windows startup if requested
+Root: HKCU; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "DatabaseSyncTool"; ValueData: """{app}\{#MyAppExeName}"" --minimized --auto-sync"; Tasks: startupicon
+; Store installation path for uninstaller
+Root: HKLM; Subkey: "SOFTWARE\{#MyAppPublisher}\{#MyAppName}"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Flags: uninsdeletekey
+; File associations (optional)
+Root: HKCR; Subkey: ".dbsync"; ValueType: string; ValueName: ""; ValueData: "DatabaseSyncConfig"; Flags: uninsdeletevalue
+Root: HKCR; Subkey: "DatabaseSyncConfig"; ValueType: string; ValueName: ""; ValueData: "Database Sync Configuration"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "DatabaseSyncConfig\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKCR; Subkey: "DatabaseSyncConfig\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+
+[Run]
+; Install Visual C++ Redistributables if needed
+Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/quiet /norestart"; Check: VCRedistNeedsInstall; StatusMsg: "Installing Visual C++ Redistributables..."
+; Optionally run the application after installation
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+[UninstallRun]
+; Stop the application before uninstalling
+Filename: "taskkill"; Parameters: "/F /IM {#MyAppExeName}"; RunOnceId: "StopApp"; Flags: runhidden
+
+[UninstallDelete]
+; Clean up any created files
+Type: files; Name: "{app}\*.log"
+Type: files; Name: "{app}\config.json"
+Type: files; Name: "{app}\*.bak"
+Type: dirifempty; Name: "{app}\logs"
+Type: dirifempty; Name: "{app}\backups"
+
+[Code]
+function VCRedistNeedsInstall: Boolean;
+var
+  Version: String;
+begin
+  // Check if Visual C++ 2015-2022 Redistributable is installed
+  Result := not RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version', Version);
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  ConfigFile: String;
+  ConfigTemplate: String;
+begin
+  if CurStep = ssPostInstall then
+  begin
+    // Create initial config file if it doesn't exist
+    ConfigFile := ExpandConstant('{app}\config.json');
+    ConfigTemplate := ExpandConstant('{app}\config.json.template');
+
+    if not FileExists(ConfigFile) and FileExists(ConfigTemplate) then
+    begin
+      FileCopy(ConfigTemplate, ConfigFile, False);
+    end;
+
+    // Create logs directory
+    ForceDirectories(ExpandConstant('{app}\logs'));
+
+    // Create backups directory
+    ForceDirectories(ExpandConstant('{app}\backups'));
+
+    // Set proper permissions for application data
+    // This ensures the app can write to its directory
+  end;
+end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  ResultCode: Integer;
+begin
+  if CurUninstallStep = usUninstall then
+  begin
+    // Remove from startup registry if it was added manually
+    RegDeleteValue(HKEY_CURRENT_USER, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Run', 'DatabaseSyncTool');
+
+    // Ask if user wants to keep configuration and logs
+    if MsgBox('Do you want to keep your configuration files and logs?' + #13#13 +
+              'Select "No" to remove all application data.',
+              mbConfirmation, MB_YESNO or MB_DEFBUTTON1) = IDNO then
+    begin
+      // User chose to remove all data
+      DeleteFile(ExpandConstant('{app}\config.json'));
+      DelTree(ExpandConstant('{app}\logs'), True, True, True);
+      DelTree(ExpandConstant('{app}\backups'), True, True, True);
+    end;
+  end;
+end;
+
+function InitializeSetup(): Boolean;
+var
+  Version: TWindowsVersion;
+begin
+  GetWindowsVersionEx(Version);
+
+  // Check Windows version (Windows 10 version 1809 or later)
+  if (Version.Major < 10) or ((Version.Major = 10) and (Version.Build < 17763)) then
+  begin
+    MsgBox('This application requires Windows 10 version 1809 (build 17763) or later.' + #13#13 +
+           'Please update your Windows installation and try again.',
+           mbError, MB_OK);
+    Result := False;
+  end
+  else
+  begin
+    Result := True;
+  end;
+end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  Result := False;
+end;
+
+// Custom page for configuration options
+procedure ConfigOptionsPage;
+var
+  Page: TInputOptionWizardPage;
+begin
+  Page := CreateInputOptionPage(wpSelectTasks,
+    'Configuration Options', 'Choose initial configuration options',
+    'Please select the initial configuration options for Database Sync Tool.',
+    True, False);
+
+  Page.Add('Start minimized to system tray by default');
+  Page.Add('Enable verbose logging for troubleshooting');
+  Page.Add('Create sample database configuration');
+
+  // Set default values
+  Page.Values[0] := True;  // Start minimized
+  Page.Values[1] := False; // Verbose logging
+  Page.Values[2] := True;  // Sample config
+end;

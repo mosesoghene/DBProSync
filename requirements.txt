@@ -1,0 +1,17 @@
+# Database Sync Tool Requirements
+
+# GUI Framework
+PySide6>=6.6.0
+
+# Database drivers
+pymysql>=1.1.0
+psycopg2-binary>=2.9.7
+
+# Build tools
+pyinstaller>=6.0.0
+
+# Windows-specific
+pywin32>=306; sys_platform == "win32"
+
+# Optional for desktop shortcuts
+pywin32-ctypes>=0.2.2; sys_platform == "win32"

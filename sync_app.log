@@ -1174,3 +1174,17 @@
 2025-08-08 08:25:52 - SyncEngine - INFO - Stopping synchronization...
 2025-08-08 08:25:52 - SyncWorker - INFO - Sync worker cleaned up
 2025-08-08 08:25:52 - root - INFO - UI log handler removed
+2025-08-08 09:05:37 - root - INFO - Logging system initialized
+2025-08-08 09:05:37 - root - INFO - UI log handler added
+2025-08-08 09:05:37 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-08 09:05:37 - SystemTrayManager - INFO - System tray icon shown
+2025-08-08 09:05:37 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-08 09:05:37 - ui.main_window - INFO - Loaded 1 database pairs
+2025-08-08 09:05:38 - root - INFO - Database Sync Tool started successfully
+2025-08-08 09:07:52 - root - INFO - Logging system initialized
+2025-08-08 09:07:52 - root - INFO - UI log handler added
+2025-08-08 09:07:52 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-08 09:07:52 - SystemTrayManager - INFO - System tray icon shown
+2025-08-08 09:07:52 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-08 09:07:52 - ui.main_window - INFO - Loaded 1 database pairs
+2025-08-08 09:07:52 - root - INFO - Database Sync Tool started successfully

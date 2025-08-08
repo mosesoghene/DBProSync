@@ -2,22 +2,23 @@
 Main application window for the Database Synchronization Application.
 
 This module contains the primary user interface with sync controls,
-status display, and live logging.
+status display, live logging, and system tray integration.
 """
 
 import logging
 from datetime import datetime
 from typing import List, Optional
+from pathlib import Path
 
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QTextEdit, QLabel, QTableWidget,
     QTableWidgetItem, QGroupBox, QSplitter,
     QHeaderView, QProgressBar, QStatusBar, QMenuBar,
-    QMenu, QMessageBox, QFileDialog
+    QMenu, QMessageBox, QFileDialog, QCheckBox, QSystemTrayIcon
 )
 from PySide6.QtCore import Qt, QTimer, QThread, Signal
-from PySide6.QtGui import QFont, QAction, QIcon, QColor
+from PySide6.QtGui import QFont, QAction, QIcon, QColor, QCloseEvent
 
 from core.config_manager import ConfigManager
 from core.sync_worker import SyncWorker
@@ -25,6 +26,8 @@ from core.models import JobStatus, DatabasePair
 from .log_handler import LogManager
 from .password_dialog import PasswordDialog
 from .settings_dialog import SettingsDialog
+from .system_tray import SystemTrayManager
+from utils.startup_manager import WindowsStartupManager, is_started_minimized, is_auto_sync_enabled
 from utils.constants import (
     WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT, LOG_VIEWER_MAX_HEIGHT,
     REFRESH_INTERVAL, STATUS_MESSAGES, ERROR_MESSAGES,
@@ -32,7 +35,7 @@ from utils.constants import (
 
 
 class MainWindow(QMainWindow):
-    """Main application window with sync controls and monitoring."""
+    """Main application window with sync controls, monitoring, and system tray."""
 
     def __init__(self):
         """Initialize the main window."""
@@ -44,9 +47,14 @@ class MainWindow(QMainWindow):
         self.sync_worker = SyncWorker()
         self.sync_thread = QThread()
 
+        # System tray and startup management
+        self.tray_manager = SystemTrayManager(self)
+        self.startup_manager = WindowsStartupManager()
+
         # UI state
         self.current_status = JobStatus.STOPPED
         self.is_scheduled_sync_active = False
+        self.is_closing_to_tray = False
 
         # Timers
         self.status_timer = QTimer()
@@ -55,7 +63,11 @@ class MainWindow(QMainWindow):
         self.setup_ui()
         self.setup_worker()
         self.setup_timers()
+        self.setup_tray()
         self.load_initial_data()
+
+        # Handle startup scenarios
+        self.handle_startup_scenarios()
 
         # Check for first run
         if self.config_manager.is_first_run():
@@ -65,6 +77,11 @@ class MainWindow(QMainWindow):
         """Set up the user interface."""
         self.setWindowTitle("Database Synchronization Tool")
         self.resize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
+
+        # Set window icon
+        icon_path = Path("assets/icon.ico")
+        if icon_path.exists():
+            self.setWindowIcon(QIcon(str(icon_path)))
 
         # Create central widget
         central_widget = QWidget()
@@ -225,6 +242,12 @@ class MainWindow(QMainWindow):
         # File menu
         file_menu = menubar.addMenu("&File")
 
+        minimize_to_tray_action = QAction("&Minimize to Tray", self)
+        minimize_to_tray_action.triggered.connect(self.minimize_to_tray)
+        file_menu.addAction(minimize_to_tray_action)
+
+        file_menu.addSeparator()
+
         export_config_action = QAction("&Export Configuration...", self)
         export_config_action.triggered.connect(self.export_configuration)
         file_menu.addAction(export_config_action)
@@ -237,7 +260,7 @@ class MainWindow(QMainWindow):
 
         exit_action = QAction("E&xit", self)
         exit_action.setShortcut("Ctrl+Q")
-        exit_action.triggered.connect(self.close)
+        exit_action.triggered.connect(self.exit_application)
         file_menu.addAction(exit_action)
 
         # Tools menu
@@ -251,12 +274,69 @@ class MainWindow(QMainWindow):
         reset_stats_action.triggered.connect(self.reset_statistics)
         tools_menu.addAction(reset_stats_action)
 
+        tools_menu.addSeparator()
+
+        # Startup management
+        self.startup_action = QAction("Enable Startup with Windows", self)
+        self.startup_action.setCheckable(True)
+        self.startup_action.triggered.connect(self.toggle_startup)
+        tools_menu.addAction(self.startup_action)
+
         # Help menu
         help_menu = menubar.addMenu("&Help")
 
         about_action = QAction("&About", self)
         about_action.triggered.connect(self.show_about)
         help_menu.addAction(about_action)
+
+        # Update startup menu state
+        self.update_startup_menu_state()
+
+    def setup_tray(self):
+        """Set up system tray functionality."""
+        if not self.tray_manager.is_available():
+            self.logger.warning("System tray not available")
+            return
+
+        # Connect tray manager signals
+        self.tray_manager.show_window.connect(self.show_from_tray)
+        self.tray_manager.exit_application.connect(self.exit_application)
+        self.tray_manager.start_sync.connect(self.start_sync_schedule)
+        self.tray_manager.stop_sync.connect(self.stop_sync_schedule)
+
+        # Show tray icon
+        self.tray_manager.show_tray_icon()
+
+        # Show notification that app is running
+        if is_started_minimized():
+            self.tray_manager.show_notification(
+                "Database Sync Tool",
+                "Application started and running in system tray"
+            )
+
+    def handle_startup_scenarios(self):
+        """Handle different startup scenarios."""
+        if is_started_minimized():
+            # Start minimized to tray
+            self.hide()
+            logging.info("Started minimized to system tray")
+
+            # Auto-start sync if enabled and valid config exists
+            if is_auto_sync_enabled():
+                QTimer.singleShot(2000, self.try_auto_start_sync)  # Delay to allow initialization
+
+    def try_auto_start_sync(self):
+        """Try to automatically start sync if valid configuration exists."""
+        db_pairs = self.config_manager.get_enabled_database_pairs()
+        if db_pairs:
+            self.start_sync_schedule()
+            self.tray_manager.show_notification(
+                "Database Sync Tool",
+                "Automatic synchronization started"
+            )
+            logging.info("Auto-started sync schedule on startup")
+        else:
+            logging.info("No valid database configuration found for auto-start")
 
     def connect_signals(self):
         """Connect UI signals to handlers."""
@@ -306,6 +386,98 @@ class MainWindow(QMainWindow):
         logger.info("Database Synchronization Tool started")
         logger.info(f"Loaded {len(self.config_manager.get_database_pairs())} database pairs")
 
+    def minimize_to_tray(self):
+        """Minimize window to system tray."""
+        if self.tray_manager.is_available():
+            self.hide()
+            self.tray_manager.show_notification(
+                "Database Sync Tool",
+                "Application minimized to tray",
+                timeout=3000
+            )
+
+    def show_from_tray(self):
+        """Show window from system tray."""
+        self.show()
+        self.raise_()
+        self.activateWindow()
+
+    def toggle_startup(self, checked: bool):
+        """Toggle Windows startup setting."""
+        if checked:
+            if self.startup_manager.enable_startup():
+                QMessageBox.information(
+                    self,
+                    "Startup Enabled",
+                    "Application will now start automatically with Windows."
+                )
+            else:
+                QMessageBox.warning(
+                    self,
+                    "Startup Failed",
+                    "Failed to enable startup with Windows."
+                )
+                self.startup_action.setChecked(False)
+        else:
+            if self.startup_manager.disable_startup():
+                QMessageBox.information(
+                    self,
+                    "Startup Disabled",
+                    "Application will no longer start automatically with Windows."
+                )
+            else:
+                QMessageBox.warning(
+                    self,
+                    "Startup Failed",
+                    "Failed to disable startup with Windows."
+                )
+                self.startup_action.setChecked(True)
+
+    def update_startup_menu_state(self):
+        """Update the startup menu item state."""
+        is_enabled = self.startup_manager.is_startup_enabled()
+        self.startup_action.setChecked(is_enabled)
+
+    def exit_application(self):
+        """Exit the application completely."""
+        self.is_closing_to_tray = False  # Ensure complete exit
+        self.close()
+
+    # [Include all the existing methods from the original main_window.py]
+    # I'm showing the key modifications - the rest of the methods remain the same
+
+    def closeEvent(self, event: QCloseEvent):
+        """Handle application close event."""
+        if self.tray_manager.is_available() and not self.is_closing_to_tray:
+            # Minimize to tray instead of closing
+            event.ignore()
+            self.minimize_to_tray()
+            return
+
+        # Actually closing the application
+        if self.is_scheduled_sync_active:
+            self.stop_sync_schedule()
+
+        # Clean up worker
+        self.sync_worker.cleanup()
+
+        # Wait for thread to finish
+        self.sync_thread.quit()
+        self.sync_thread.wait(3000)  # Wait up to 3 seconds
+
+        # Hide tray icon
+        if self.tray_manager:
+            self.tray_manager.hide_tray_icon()
+
+        # Clean up log manager
+        self.log_manager.cleanup()
+
+        logging.info("Application closed")
+        super().closeEvent(event)
+
+    # Include all other existing methods here...
+    # [All the existing methods from the original main_window.py should be included]
+
     def show_first_run_setup(self):
         """Show first run password setup dialog."""
         dialog = PasswordDialog(self, is_first_run=True)
@@ -341,11 +513,12 @@ class MainWindow(QMainWindow):
         """Start scheduled synchronization."""
         db_pairs = self.config_manager.get_enabled_database_pairs()
         if not db_pairs:
-            QMessageBox.warning(
-                self,
-                "No Configuration",
-                ERROR_MESSAGES['no_db_pairs']
-            )
+            if not is_started_minimized():  # Don't show dialog if started minimized
+                QMessageBox.warning(
+                    self,
+                    "No Configuration",
+                    ERROR_MESSAGES['no_db_pairs']
+                )
             return
 
         # Start the worker
@@ -360,6 +533,10 @@ class MainWindow(QMainWindow):
         self.start_sync_btn.setEnabled(False)
         self.stop_sync_btn.setEnabled(True)
 
+        # Update tray status
+        if self.tray_manager:
+            self.tray_manager.update_sync_status(True)
+
         logging.info(f"Scheduled sync started with {interval / 1000}s interval")
 
     def stop_sync_schedule(self):
@@ -371,6 +548,10 @@ class MainWindow(QMainWindow):
         self.is_scheduled_sync_active = False
         self.start_sync_btn.setEnabled(True)
         self.stop_sync_btn.setEnabled(False)
+
+        # Update tray status
+        if self.tray_manager:
+            self.tray_manager.update_sync_status(False)
 
         logging.info("Scheduled sync stopped")
 
@@ -425,6 +606,7 @@ class MainWindow(QMainWindow):
                     # Reload configuration and update UI
                     self.update_pairs_table()
                     self.refresh_sync_worker()
+                    self.update_startup_menu_state()
                     logging.info("Settings updated")
             else:
                 QMessageBox.warning(
@@ -502,6 +684,13 @@ class MainWindow(QMainWindow):
             10000  # Show for 10 seconds
         )
 
+        # Show tray notification for completed sync
+        if self.tray_manager and records > 0:
+            self.tray_manager.show_notification(
+                "Sync Completed",
+                f"{records} records synchronized across {successful}/{total} tables"
+            )
+
         # Update statistics
         self.update_statistics()
 
@@ -515,7 +704,17 @@ class MainWindow(QMainWindow):
         Args:
             error: Error message
         """
-        QMessageBox.critical(self, "Sync Error", f"Synchronization error:\n\n{error}")
+        if not is_started_minimized():  # Only show dialog if not minimized
+            QMessageBox.critical(self, "Sync Error", f"Synchronization error:\n\n{error}")
+
+        # Always show tray notification for errors
+        if self.tray_manager:
+            self.tray_manager.show_notification(
+                "Sync Error",
+                error,
+                QSystemTrayIcon.Critical
+            )
+
         logging.error(f"Sync worker error: {error}")
 
     def update_ui_status(self):
@@ -742,28 +941,11 @@ class MainWindow(QMainWindow):
                 <li>Scheduled and manual sync operations</li>
                 <li>Support for MySQL, PostgreSQL, and SQLite</li>
                 <li>Comprehensive logging and monitoring</li>
+                <li>System tray integration</li>
+                <li>Windows startup integration</li>
             </ul>
 
             <p><b>Support:</b></p>
             <p>For help and documentation, please refer to the user manual.</p>
             """
         )
-
-    def closeEvent(self, event):
-        """Handle application close event."""
-        # Stop any running sync operations
-        if self.is_scheduled_sync_active:
-            self.stop_sync_schedule()
-
-        # Clean up worker
-        self.sync_worker.cleanup()
-
-        # Wait for thread to finish
-        self.sync_thread.quit()
-        self.sync_thread.wait(3000)  # Wait up to 3 seconds
-
-        # Clean up log manager
-        self.log_manager.cleanup()
-
-        logging.info("Application closed")
-        super().closeEvent(event)
