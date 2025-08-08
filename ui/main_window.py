@@ -731,10 +731,11 @@ class MainWindow(QMainWindow):
             f"About {APP_NAME}",
             f"""
             <h2>{APP_NAME}</h2>
-            <p>Version {APP_VERSION}</p>
+            <p>Version : {APP_VERSION}</p>
+            <p>Creator : Moses Oghene</p>
             <p>A powerful database synchronization tool for keeping your local and cloud databases in sync.</p>
 
-            <p><b>Features:</b></p>
+            <p><b>Features :</b></p>
             <ul>
                 <li>Bidirectional database synchronization</li>
                 <li>Change tracking with triggers</li>

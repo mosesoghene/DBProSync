@@ -1153,3 +1153,24 @@
 2025-08-08 08:16:44 - SyncEngine - INFO - Stopping synchronization...
 2025-08-08 08:16:44 - SyncWorker - INFO - Sync worker cleaned up
 2025-08-08 08:16:44 - root - INFO - UI log handler removed
+2025-08-08 08:23:31 - root - INFO - Logging system initialized
+2025-08-08 08:23:31 - root - INFO - UI log handler added
+2025-08-08 08:23:31 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-08 08:23:31 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-08 08:23:31 - ui.main_window - INFO - Loaded 1 database pairs
+2025-08-08 08:23:50 - SyncEngine - INFO - Stopping synchronization...
+2025-08-08 08:23:50 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-08 08:23:50 - root - INFO - UI log handler removed
+2025-08-08 08:24:08 - root - INFO - Logging system initialized
+2025-08-08 08:24:08 - root - INFO - UI log handler added
+2025-08-08 08:24:08 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-08 08:24:08 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-08 08:24:08 - ui.main_window - INFO - Loaded 1 database pairs
+2025-08-08 08:25:23 - root - INFO - Logging system initialized
+2025-08-08 08:25:23 - root - INFO - UI log handler added
+2025-08-08 08:25:23 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-08-08 08:25:23 - ui.main_window - INFO - Database Synchronization Tool started
+2025-08-08 08:25:23 - ui.main_window - INFO - Loaded 1 database pairs
+2025-08-08 08:25:52 - SyncEngine - INFO - Stopping synchronization...
+2025-08-08 08:25:52 - SyncWorker - INFO - Sync worker cleaned up
+2025-08-08 08:25:52 - root - INFO - UI log handler removed
