@@ -724,7 +724,7 @@ class MainWindow(QMainWindow):
 
     def show_about(self):
         """Show about dialog."""
-        from ..utils.constants import APP_NAME, APP_VERSION
+        from utils.constants import APP_NAME, APP_VERSION
 
         QMessageBox.about(
             self,
