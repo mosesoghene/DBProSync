@@ -10,6 +10,38 @@ import sys
 import os
 import logging
 from pathlib import Path
+import tempfile
+
+
+# CRITICAL: Change working directory BEFORE any other imports
+# This prevents any module from creating files in the installation directory
+def setup_user_working_directory():
+    """Setup user-writable working directory for the application."""
+    if getattr(sys, 'frozen', False):  # If running as exe
+        if os.name == 'nt':  # Windows
+            user_data = os.environ.get('LOCALAPPDATA', os.path.expanduser('~\\AppData\\Local'))
+            app_dir = os.path.join(user_data, "Database Sync Tool")
+        else:
+            app_dir = os.path.join(os.path.expanduser("~"), ".database-sync-tool")
+
+        # Create directory if it doesn't exist
+        os.makedirs(app_dir, exist_ok=True)
+
+        # Change to this directory so ALL relative paths work from here
+        os.chdir(app_dir)
+
+        # Create common subdirectories
+        os.makedirs("logs", exist_ok=True)
+        os.makedirs("backups", exist_ok=True)
+        os.makedirs("temp", exist_ok=True)
+
+        return app_dir
+
+    return None
+
+
+# Setup working directory FIRST, before any other imports
+user_app_dir = setup_user_working_directory()
 
 # Add the current directory to Python path for imports
 current_dir = Path(__file__).parent
@@ -23,6 +55,23 @@ from ui.main_window import MainWindow
 from utils.startup_manager import parse_command_line_args
 from utils.constants import APP_NAME, APP_VERSION, ORGANIZATION_NAME
 
+# Import path management after directory setup
+try:
+    from utils.app_paths import setup_logging, app_paths
+except ImportError:
+    # Fallback if app_paths module is not available
+    def setup_logging():
+        log_dir = Path("logs")
+        log_dir.mkdir(exist_ok=True)
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(log_dir / "app.log", encoding='utf-8'),
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
+
 
 def setup_application_properties(app: QApplication):
     """Set up application properties and styling."""
@@ -32,10 +81,17 @@ def setup_application_properties(app: QApplication):
     app.setOrganizationName(ORGANIZATION_NAME)
     app.setQuitOnLastWindowClosed(False)  # Keep app running when window is closed
 
-    # Set application icon
-    icon_path = Path("assets/icon.ico")
-    if icon_path.exists():
-        app.setWindowIcon(QIcon(str(icon_path)))
+    # Set application icon - look in original installation directory
+    icon_paths = [
+        Path("assets/icon.ico"),  # Current directory (user data dir)
+        Path(sys.executable).parent / "assets" / "icon.ico",  # Next to exe
+        current_dir / "assets" / "icon.ico"  # Original source directory
+    ]
+
+    for icon_path in icon_paths:
+        if icon_path.exists():
+            app.setWindowIcon(QIcon(str(icon_path)))
+            break
 
     # Apply a modern dark theme
     app.setStyle("Fusion")
@@ -59,21 +115,6 @@ def setup_application_properties(app: QApplication):
     app.setPalette(dark_palette)
 
 
-def setup_logging():
-    """Set up basic logging configuration."""
-    log_dir = Path("logs")
-    log_dir.mkdir(exist_ok=True)
-
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(log_dir / "app.log", encoding='utf-8'),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
-
-
 def handle_exception(exc_type, exc_value, exc_traceback):
     """Handle uncaught exceptions."""
     if issubclass(exc_type, KeyboardInterrupt):
@@ -81,6 +122,35 @@ def handle_exception(exc_type, exc_value, exc_traceback):
         return
 
     logging.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+
+def override_file_operations():
+    """Override common file operations to prevent writing to installation directory."""
+    if not getattr(sys, 'frozen', False):
+        return  # Only do this for frozen executables
+
+    # Store original open function
+    original_open = open
+
+    def safe_open(file, mode='r', **kwargs):
+        """Wrapper around open() to redirect problematic paths to user directory."""
+        if isinstance(file, (str, Path)):
+            file_path = Path(file)
+
+            # If trying to write to installation directory, redirect to user directory
+            if 'w' in str(mode) or 'a' in str(mode):
+                install_dir = Path(sys.executable).parent
+                if str(file_path.resolve()).startswith(str(install_dir.resolve())):
+                    # Redirect to current working directory (user data dir)
+                    new_path = Path.cwd() / file_path.name
+                    logging.warning(f"Redirected file write from {file_path} to {new_path}")
+                    file = new_path
+
+        return original_open(file, mode, **kwargs)
+
+    # Replace the built-in open function
+    import builtins
+    builtins.open = safe_open
 
 
 def main():
@@ -91,7 +161,10 @@ def main():
     # Parse command line arguments
     args = parse_command_line_args()
 
-    # Set up logging early
+    # Override file operations to prevent installation directory writes
+    override_file_operations()
+
+    # Set up logging with proper user paths
     setup_logging()
 
     # Log startup information
@@ -99,6 +172,16 @@ def main():
     logging.info(f"Command line args: {sys.argv}")
     logging.info(f"Python version: {sys.version}")
     logging.info(f"Working directory: {os.getcwd()}")
+    if user_app_dir:
+        logging.info(f"User app directory: {user_app_dir}")
+
+    # Log path information if available
+    try:
+        from utils.app_paths import app_paths
+        logging.info(f"Config file: {app_paths.config_file}")
+        logging.info(f"Logs directory: {app_paths.logs_dir}")
+    except ImportError:
+        logging.info("App paths module not available, using current directory")
 
     # Create QApplication
     app = QApplication(sys.argv)
@@ -233,9 +316,6 @@ def create_desktop_shortcut():
 
 
 if __name__ == "__main__":
-    # Ensure we're in the correct directory
-    script_dir = Path(__file__).parent
-    os.chdir(script_dir)
-
+    # The working directory setup is already done at module import time
     exit_code = main()
     sys.exit(exit_code)

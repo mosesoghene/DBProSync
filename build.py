@@ -274,7 +274,8 @@ def build_executable(debug=False):
 
 
 def create_config_template():
-    """Create a configuration template file."""
+    """Create a configuration template file with default settings only."""
+    # Always create fresh template with defaults (password: 'admin')
     template = {
         "app_password_hash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1",
         "database_pairs": [],
@@ -286,9 +287,10 @@ def create_config_template():
     }
 
     import json
-    with open('config.json.template', 'w') as f:
+    with open('config.json.template', 'w', encoding='utf-8') as f:
         json.dump(template, f, indent=4)
 
+    print("✓ Created fresh config template with default settings (password: 'admin')")
 
 def create_readme():
     """Create a README file for distribution."""

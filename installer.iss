@@ -43,20 +43,17 @@ Name: "startupicon"; Description: "Start {#MyAppName} automatically when Windows
 Name: "autostart"; Description: "Enable auto-sync on startup (requires startup icon)"; GroupDescription: "Startup Options"; Flags: unchecked
 
 [Files]
-; Main executable and Python runtime
-Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\_internal\*"; DestDir: "{app}\_internal"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Main executable and Python runtime - FIXED PATHS
+Source: "dist\DatabaseSyncTool\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\DatabaseSyncTool\_internal\*"; DestDir: "{app}\_internal"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; Application assets
 Source: "assets\*"; DestDir: "{app}\assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "config.json.template"; DestDir: "{app}"; DestName: "config.json.template"; Flags: ignoreversion
 
 ; Documentation
-Source: "README.md"; DestDir: "{app}"; DestName: "README.txt"; Flags: ignoreversion
-Source: "LICENSE"; DestDir: "{app}"; DestName: "LICENSE.txt"; Flags: ignoreversion
-
-; Visual C++ Redistributables (if needed)
-Source: "redist\VC_redist.x64.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Check: VCRedistNeedsInstall
+Source: "README.txt"; DestDir: "{app}"; DestName: "README.txt"; Flags: ignoreversion
+Source: "LICENSE.txt"; DestDir: "{app}"; DestName: "LICENSE.txt"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -75,8 +72,6 @@ Root: HKCR; Subkey: "DatabaseSyncConfig\DefaultIcon"; ValueType: string; ValueNa
 Root: HKCR; Subkey: "DatabaseSyncConfig\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
 
 [Run]
-; Install Visual C++ Redistributables if needed
-Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/quiet /norestart"; Check: VCRedistNeedsInstall; StatusMsg: "Installing Visual C++ Redistributables..."
 ; Optionally run the application after installation
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
@@ -93,59 +88,60 @@ Type: dirifempty; Name: "{app}\logs"
 Type: dirifempty; Name: "{app}\backups"
 
 [Code]
-function VCRedistNeedsInstall: Boolean;
-var
-  Version: String;
-begin
-  // Check if Visual C++ 2015-2022 Redistributable is installed
-  Result := not RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version', Version);
-end;
-
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   ConfigFile: String;
   ConfigTemplate: String;
+  UserDataDir: String;
+  UserConfigDir: String;
 begin
   if CurStep = ssPostInstall then
   begin
-    // Create initial config file if it doesn't exist
-    ConfigFile := ExpandConstant('{app}\config.json');
+    // Create config template in installation directory
     ConfigTemplate := ExpandConstant('{app}\config.json.template');
 
+    // User's config will be in %APPDATA%\Database Sync Tool\config.json
+    UserConfigDir := ExpandConstant('{userappdata}\Database Sync Tool');
+    UserDataDir := ExpandConstant('{localappdata}\Database Sync Tool');
+    ConfigFile := UserConfigDir + '\config.json';
+
+    // Create user directories
+    ForceDirectories(UserConfigDir);
+    ForceDirectories(UserDataDir);
+    ForceDirectories(UserDataDir + '\logs');
+    ForceDirectories(UserDataDir + '\backups');
+
+    // Create initial config file in user directory if it doesn't exist
     if not FileExists(ConfigFile) and FileExists(ConfigTemplate) then
     begin
       FileCopy(ConfigTemplate, ConfigFile, False);
     end;
-
-    // Create logs directory
-    ForceDirectories(ExpandConstant('{app}\logs'));
-
-    // Create backups directory
-    ForceDirectories(ExpandConstant('{app}\backups'));
-
-    // Set proper permissions for application data
-    // This ensures the app can write to its directory
   end;
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
-  ResultCode: Integer;
+  UserConfigDir: String;
+  UserDataDir: String;
 begin
   if CurUninstallStep = usUninstall then
   begin
     // Remove from startup registry if it was added manually
     RegDeleteValue(HKEY_CURRENT_USER, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Run', 'DatabaseSyncTool');
 
+    UserConfigDir := ExpandConstant('{userappdata}\Database Sync Tool');
+    UserDataDir := ExpandConstant('{localappdata}\Database Sync Tool');
+
     // Ask if user wants to keep configuration and logs
     if MsgBox('Do you want to keep your configuration files and logs?' + #13#13 +
-              'Select "No" to remove all application data.',
+              'Select "No" to remove all application data.' + #13#13 +
+              'Config location: ' + UserConfigDir + #13 +
+              'Logs location: ' + UserDataDir,
               mbConfirmation, MB_YESNO or MB_DEFBUTTON1) = IDNO then
     begin
       // User chose to remove all data
-      DeleteFile(ExpandConstant('{app}\config.json'));
-      DelTree(ExpandConstant('{app}\logs'), True, True, True);
-      DelTree(ExpandConstant('{app}\backups'), True, True, True);
+      DelTree(UserConfigDir, True, True, True);
+      DelTree(UserDataDir, True, True, True);
     end;
   end;
 end;
@@ -173,24 +169,4 @@ end;
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
   Result := False;
-end;
-
-// Custom page for configuration options
-procedure ConfigOptionsPage;
-var
-  Page: TInputOptionWizardPage;
-begin
-  Page := CreateInputOptionPage(wpSelectTasks,
-    'Configuration Options', 'Choose initial configuration options',
-    'Please select the initial configuration options for Database Sync Tool.',
-    True, False);
-
-  Page.Add('Start minimized to system tray by default');
-  Page.Add('Enable verbose logging for troubleshooting');
-  Page.Add('Create sample database configuration');
-
-  // Set default values
-  Page.Values[0] := True;  // Start minimized
-  Page.Values[1] := False; // Verbose logging
-  Page.Values[2] := True;  // Sample config
 end;

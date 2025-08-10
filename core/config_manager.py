@@ -11,10 +11,11 @@ import logging
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
+from utils.app_paths import app_paths
 from utils.custom_encoder import CustomEncoder
 from .models import DatabasePair, AppConfig
 from utils.constants import (
-    CONFIG_FILE, DEFAULT_PASSWORD, DEFAULT_LOG_LEVEL,
+    DEFAULT_PASSWORD, DEFAULT_LOG_LEVEL,
     DEFAULT_SYNC_INTERVAL, ERROR_MESSAGES
 )
 
@@ -22,15 +23,27 @@ from utils.constants import (
 class ConfigManager:
     """Manages application configuration and persistence."""
 
-    def __init__(self, config_file: str = CONFIG_FILE):
+    def __init__(self, config_file: Optional[str] = None):
         """
         Initialize the configuration manager.
 
         Args:
-            config_file: Path to the configuration file
+            config_file: Optional path to the configuration file. If None, uses user directory.
         """
-        self.config_file = Path(config_file)
+        # Use app_paths.config_file instead of CONFIG_FILE constant
+        if config_file:
+            self.config_file = Path(config_file)
+        else:
+            # This is the fix - use the property directly, not as a function call
+            self.config_file = app_paths.config_file
+
         self.logger = logging.getLogger(self.__class__.__name__)
+
+        # Ensure the config directory exists
+        try:
+            self.config_file.parent.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            self.logger.error(f"Failed to create config directory: {e}")
 
         # Default configuration
         self._config = AppConfig(
@@ -108,7 +121,9 @@ class ConfigManager:
             True if loaded successfully, False otherwise
         """
         if not self.config_file.exists():
-            self.logger.info("Configuration file doesn't exist, using defaults")
+            self.logger.info(f"Configuration file doesn't exist at {self.config_file}, using defaults")
+            # Try to migrate from old location
+            self._try_migrate_config()
             return True
 
         try:
@@ -146,14 +161,35 @@ class ConfigManager:
             self.logger.error(f"Failed to load config: {e}")
             return False
 
+    def _try_migrate_config(self):
+        """Try to migrate config from old locations."""
+        try:
+            # Check if app_paths has a migration method
+            if hasattr(app_paths, 'migrate_from_install_dir'):
+                migrated = app_paths.migrate_from_install_dir()
+                if migrated:
+                    self.logger.info("Successfully migrated config from installation directory")
+                    # Reload the config after migration
+                    if self.config_file.exists():
+                        self.load_config()
+        except Exception as e:
+            self.logger.warning(f"Could not migrate config: {e}")
+
     def save_config(self) -> bool:
         """Save current configuration to file."""
         try:
+            # Ensure the config directory exists
+            self.config_file.parent.mkdir(parents=True, exist_ok=True)
+
             # Create backup of existing config
             if self.config_file.exists() and self._config.backup_enabled:
                 backup_file = self.config_file.with_suffix('.json.bak')
-                self.config_file.replace(backup_file)
-                self.logger.debug(f"Created config backup: {backup_file}")
+                try:
+                    import shutil
+                    shutil.copy2(self.config_file, backup_file)
+                    self.logger.debug(f"Created config backup: {backup_file}")
+                except Exception as e:
+                    self.logger.warning(f"Could not create backup: {e}")
 
             # Debug: Check for enum objects before saving
             config_dict = self._config.to_dict()
@@ -161,7 +197,7 @@ class ConfigManager:
 
             # Save current config
             with open(self.config_file, 'w', encoding='utf-8') as f:
-                json.dump(config_dict, f, indent=4, ensure_ascii=False)
+                json.dump(config_dict, f, indent=4, ensure_ascii=False, cls=CustomEncoder)
 
             self.logger.info(f"Configuration saved to {self.config_file}")
             return True
@@ -373,7 +409,7 @@ class ConfigManager:
                         pair_data['cloud_db']['password'] = ""
 
             with open(export_path, 'w', encoding='utf-8') as f:
-                json.dump(export_data, f, indent=4, ensure_ascii=False)
+                json.dump(export_data, f, indent=4, ensure_ascii=False, cls=CustomEncoder)
 
             self.logger.info(f"Configuration exported to {export_path}")
             return True
