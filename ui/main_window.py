@@ -101,7 +101,7 @@ class MainWindow(QMainWindow):
 
         self.start_sync_btn = QPushButton("Start Sync Schedule")
         self.stop_sync_btn = QPushButton("Stop Sync Schedule")
-        self.manual_sync_btn = QPushButton("Run Manual Sync")
+        self.manual_sync_btn = QPushButton("Smart Manual Sync")
         self.setup_infrastructure_btn = QPushButton("Setup Infrastructure")
         self.settings_btn = QPushButton("Settings")
 
@@ -443,9 +443,6 @@ class MainWindow(QMainWindow):
         self.is_closing_to_tray = False  # Ensure complete exit
         self.close()
 
-    # [Include all the existing methods from the original main_window.py]
-    # I'm showing the key modifications - the rest of the methods remain the same
-
     def closeEvent(self, event: QCloseEvent):
         """Handle application close event."""
         if self.tray_manager.is_available() and not self.is_closing_to_tray:
@@ -474,9 +471,6 @@ class MainWindow(QMainWindow):
 
         logging.info("Application closed")
         super().closeEvent(event)
-
-    # Include all other existing methods here...
-    # [All the existing methods from the original main_window.py should be included]
 
     def show_first_run_setup(self):
         """Show first run password setup dialog."""
@@ -556,7 +550,7 @@ class MainWindow(QMainWindow):
         logging.info("Scheduled sync stopped")
 
     def run_manual_sync(self):
-        """Run a one-time manual synchronization."""
+        """Run a one-time intelligent manual synchronization."""
         db_pairs = self.config_manager.get_enabled_database_pairs()
         if not db_pairs:
             QMessageBox.warning(
@@ -566,7 +560,23 @@ class MainWindow(QMainWindow):
             )
             return
 
-        self.sync_worker.run_manual_sync()
+        # Show confirmation dialog with details about what will happen
+        sync_tables_count = sum(len(pair.get_sync_enabled_tables()) for pair in db_pairs)
+
+        reply = QMessageBox.question(
+            self,
+            "Smart Manual Sync",
+            f"This will perform an intelligent sync for {sync_tables_count} tables:\n\n"
+            f"• Compare source and destination data\n"
+            f"• Sync newer records based on timestamps\n"
+            f"• Handle missing records automatically\n\n"
+            f"Continue?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.Yes
+        )
+
+        if reply == QMessageBox.Yes:
+            self.sync_worker.run_manual_sync()
 
     def setup_infrastructure(self):
         """Set up synchronization infrastructure."""

@@ -26,7 +26,8 @@ WizardStyle=modern
 PrivilegesRequired=admin
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
-MinVersion=10.0.17763
+; FIXED: Changed to support Windows Server 2012 R2 (6.3) and later
+MinVersion=6.3.9200
 UninstallDisplayIcon={app}\{#MyAppExeName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
@@ -152,10 +153,13 @@ var
 begin
   GetWindowsVersionEx(Version);
 
-  // Check Windows version (Windows 10 version 1809 or later)
-  if (Version.Major < 10) or ((Version.Major = 10) and (Version.Build < 17763)) then
+  // FIXED: Updated version check to support Windows Server 2012 R2 and later
+  // Windows Server 2012 R2 = 6.3, Windows 8.1 = 6.3
+  if (Version.Major < 6) or ((Version.Major = 6) and (Version.Minor < 3)) then
   begin
-    MsgBox('This application requires Windows 10 version 1809 (build 17763) or later.' + #13#13 +
+    MsgBox('This application requires Windows Server 2012 R2, Windows 8.1, or later.' + #13#13 +
+           'Current version: ' + IntToStr(Version.Major) + '.' + IntToStr(Version.Minor) + #13#13 +
+           'Your current Windows version: ' + IntToStr(Version.Major) + '.' + IntToStr(Version.Minor) + '.' + IntToStr(Version.Build) + #13 +
            'Please update your Windows installation and try again.',
            mbError, MB_OK);
     Result := False;

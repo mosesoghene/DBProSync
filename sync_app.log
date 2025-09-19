@@ -1188,3 +1188,39 @@
 2025-08-08 09:07:52 - ui.main_window - INFO - Database Synchronization Tool started
 2025-08-08 09:07:52 - ui.main_window - INFO - Loaded 1 database pairs
 2025-08-08 09:07:52 - root - INFO - Database Sync Tool started successfully
+2025-09-19 08:32:20 - root - INFO - Logging system initialized
+2025-09-19 08:32:20 - root - INFO - UI log handler added
+2025-09-19 08:32:20 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-09-19 08:32:20 - SystemTrayManager - INFO - System tray icon shown
+2025-09-19 08:32:20 - ui.main_window - INFO - Database Synchronization Tool started
+2025-09-19 08:32:20 - ui.main_window - INFO - Loaded 1 database pairs
+2025-09-19 08:32:21 - root - INFO - Database Sync Tool started successfully
+2025-09-19 08:32:37 - SyncWorker - DEBUG - Status changed to: Running
+2025-09-19 08:32:37 - SyncWorker - INFO - Manual sync started
+2025-09-19 08:32:37 - SyncWorker - INFO - Syncing database pair: Sahub Sync Pair
+2025-09-19 08:32:58 - DatabaseManager - ERROR - Failed to connect to database Sahub Sync Pair_local: (2003, "Can't connect to MySQL server on '192.168.0.54' ([WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)")
+2025-09-19 08:32:58 - DatabaseManager - INFO - Connected to mysql database: Sahub Sync Pair_cloud
+2025-09-19 08:32:59 - DatabaseManager - DEBUG - Disconnected from database: Sahub Sync Pair_cloud
+2025-09-19 08:32:59 - SyncWorker - ERROR - Validation failed for Sahub Sync Pair: Cannot connect to local database: Sahub Sync Pair_local
+2025-09-19 08:32:59 - SyncWorker - INFO - Manual sync completed in 21.80s: 0 successful, 1 failed, 0 records synced
+2025-09-19 08:32:59 - SyncWorker - DEBUG - Status changed to: Completed
+2025-09-19 08:32:59 - SyncWorker - DEBUG - Status changed to: Stopped
+2025-09-19 08:44:51 - root - INFO - Logging system initialized
+2025-09-19 08:44:51 - root - INFO - UI log handler added
+2025-09-19 08:44:51 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-09-19 08:44:51 - SystemTrayManager - INFO - System tray icon shown
+2025-09-19 08:44:51 - ui.main_window - INFO - Database Synchronization Tool started
+2025-09-19 08:44:51 - ui.main_window - INFO - Loaded 1 database pairs
+2025-09-19 08:44:51 - root - INFO - Database Sync Tool started successfully
+2025-09-19 08:51:47 - root - INFO - Logging system initialized
+2025-09-19 08:51:48 - root - INFO - UI log handler added
+2025-09-19 08:51:48 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-09-19 08:51:48 - SystemTrayManager - INFO - System tray icon shown
+2025-09-19 08:51:48 - ui.main_window - INFO - Database Synchronization Tool started
+2025-09-19 08:51:48 - ui.main_window - INFO - Loaded 1 database pairs
+2025-09-19 08:51:48 - root - INFO - Database Sync Tool started successfully
+2025-09-19 08:58:27 - ConfigManager - DEBUG - Created config backup: C:\Users\moghene\AppData\Roaming\Database Sync Tool\config.json.bak
+2025-09-19 08:58:27 - ConfigManager - INFO - Configuration saved to C:\Users\moghene\AppData\Roaming\Database Sync Tool\config.json
+2025-09-19 08:58:27 - SettingsDialog - INFO - Settings saved successfully
+2025-09-19 08:58:27 - SyncWorker - INFO - Configured 1 database pairs for sync
+2025-09-19 08:58:27 - root - INFO - Settings updated

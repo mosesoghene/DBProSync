@@ -324,7 +324,7 @@ FEATURES
 
 SYSTEM REQUIREMENTS
 -------------------
-- Windows 10 version 1809 (build 17763) or later
+- Windows Server 2012 R2 or Windows 8.1 and later
 - Administrative privileges for installation
 - Network access to your databases
 
@@ -347,9 +347,6 @@ For support and documentation, please contact the developer.
 
 Copyright (C) 2024 Moses Oghene
 '''
-
-    with open('README.txt', 'w') as f:
-        f.write(readme_content.strip())
 
 
 def create_license():

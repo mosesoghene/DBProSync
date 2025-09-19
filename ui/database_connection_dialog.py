@@ -13,7 +13,7 @@ from PySide6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QFormLayout, QGroupBox,
     QLineEdit, QSpinBox, QComboBox, QPushButton, QTableWidget,
     QTableWidgetItem, QCheckBox, QHeaderView, QMessageBox,
-    QProgressDialog, QLabel, QSplitter, QTextEdit
+    QProgressDialog, QLabel, QSplitter, QTextEdit, QWidget, QSizePolicy
 )
 from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtGui import QFont
@@ -89,7 +89,8 @@ class DatabaseConnectionDialog(QDialog):
         self.setWindowTitle(title)
         self.setModal(True)
         self.resize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT)
-        self.setMinimumSize(800, 700)
+        self.setMinimumSize(1000, 700)
+        self.setMaximumHeight(800)
 
         # Main layout
         main_layout = QVBoxLayout(self)
@@ -113,7 +114,7 @@ class DatabaseConnectionDialog(QDialog):
         splitter.addWidget(tables_widget)
 
         # Set splitter proportions
-        splitter.setSizes([300, 400])
+        splitter.setSizes([200, 350])
         splitter.setCollapsible(0, False)
         splitter.setCollapsible(1, False)
         main_layout.addWidget(splitter)
@@ -233,7 +234,14 @@ class DatabaseConnectionDialog(QDialog):
 
         layout.addLayout(controls_layout)
 
-        # Tables table
+        # Create horizontal splitter for tables and status
+        content_splitter = QSplitter(Qt.Horizontal)
+
+        # Left side - Tables table
+        tables_container = QWidget()
+        tables_container_layout = QVBoxLayout(tables_container)
+        tables_container_layout.setContentsMargins(0, 0, 0, 0)
+
         self.tables_widget = QTableWidget()
         self.tables_widget.setColumnCount(5)
         self.tables_widget.setHorizontalHeaderLabels([
@@ -249,17 +257,39 @@ class DatabaseConnectionDialog(QDialog):
         header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
 
         self.tables_widget.setAlternatingRowColors(True)
-        self.tables_widget.setMinimumHeight(250)
+        self.tables_widget.setMinimumHeight(200)  # Reduced minimum height
+        self.tables_widget.setMaximumHeight(300)  # Add maximum height to prevent overflow
+        self.tables_widget.setMinimumWidth(400)   # Keep minimum width
 
-        layout.addWidget(self.tables_widget)
+        tables_container_layout.addWidget(self.tables_widget)
+        content_splitter.addWidget(tables_container)
 
-        # Status area
+        # Right side - Status area
+        status_container = QWidget()
+        status_container_layout = QVBoxLayout(status_container)
+        status_container_layout.setContentsMargins(0, 0, 0, 0)
+
+        status_label = QLabel("Connection Status:")
+        status_label.setStyleSheet("font-weight: bold;")
+        status_container_layout.addWidget(status_label)
+
         self.status_text = QTextEdit()
-        self.status_text.setMinimumHeight(250)
         self.status_text.setReadOnly(True)
         self.status_text.setFont(QFont("Consolas", 9))
-        layout.addWidget(QLabel("Status:"))
-        layout.addWidget(self.status_text)
+        self.status_text.setMinimumWidth(300)
+        self.status_text.setMaximumWidth(400)
+        self.status_text.setMaximumHeight(300)  # Add maximum height
+        self.status_text.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+
+        status_container_layout.addWidget(self.status_text)
+        content_splitter.addWidget(status_container)
+
+        # Set splitter proportions - give more space to tables
+        content_splitter.setSizes([600, 300])
+        content_splitter.setCollapsible(0, False)  # Don't allow tables area to collapse
+        content_splitter.setCollapsible(1, True)  # Allow status area to collapse
+
+        layout.addWidget(content_splitter)
 
         return tables_group
 

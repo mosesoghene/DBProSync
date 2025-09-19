@@ -3,12 +3,13 @@ name = "dbprosync"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.8"
 dependencies = [
     "psycopg2-binary>=2.9.7",
     "pyinstaller>=6.0.0",
     "pymysql>=1.1.0",
     "pyside6>=6.6.0",
+    "python-dateutil>=2.9.0.post0",
     "pywin32>=306 ; sys_platform == 'win32'",
     "pywin32-ctypes>=0.2.2 ; sys_platform == 'win32'",
 ]

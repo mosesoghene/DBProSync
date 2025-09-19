@@ -238,48 +238,48 @@ class SyncEngine:
                       exclude_db_id: str = None) -> int:
         """
         Perform one-way synchronization from source to target.
-
-        Args:
-            table_name: Name of the table to sync
-            source_manager: Source database manager
-            target_manager: Target database manager
-            last_sync: Last sync timestamp
-            exclude_db_id: Database ID to exclude from sync
-
-        Returns:
-            Number of records synchronized
+        Now includes intelligent data comparison based on timestamps and record counts.
         """
         try:
-            # Get pending changes from source
+            # First, try changelog-based sync for real-time changes
             pending_changes = source_manager.get_pending_changes(
                 table_name, last_sync, exclude_db_id
             )
 
-            if not pending_changes:
-                self.logger.debug(f"No pending changes for table {table_name}")
-                return 0
+            changelog_synced = 0
+            if pending_changes:
+                self.logger.info(f"Processing {len(pending_changes)} changelog entries for {table_name}")
 
-            self.logger.info(f"Found {len(pending_changes)} pending changes for {table_name}")
+                applied_ids = []
+                for change in pending_changes:
+                    if not self.is_running:
+                        break
 
-            applied_ids = []
+                    if self._apply_change_with_retry(change, target_manager):
+                        applied_ids.append(change.id)
+                    else:
+                        self.logger.warning(f"Failed to apply change {change.id} for table {table_name}")
 
-            for change in pending_changes:
-                if not self.is_running:
-                    break
+                # Mark successfully applied changes as synced
+                if applied_ids:
+                    source_manager.mark_changes_synced(table_name, applied_ids)
+                    changelog_synced = len(applied_ids)
 
-                if self._apply_change_with_retry(change, target_manager):
-                    applied_ids.append(change.id)
-                else:
-                    self.logger.warning(f"Failed to apply change {change.id} for table {table_name}")
+            # Then, perform full table comparison sync
+            self.logger.info(f"Performing full table comparison sync for {table_name}")
+            comparison_synced = self._compare_and_sync_table_data(
+                table_name, source_manager, target_manager
+            )
 
-            # Mark successfully applied changes as synced
-            if applied_ids:
-                # Note: This is simplified - in practice you'd need to mark changes
-                # in the specific changelog table
-                source_manager.mark_changes_synced(applied_ids)
-                self.logger.info(f"Successfully applied {len(applied_ids)} changes for {table_name}")
+            total_synced = changelog_synced + comparison_synced
 
-            return len(applied_ids)
+            if total_synced > 0:
+                self.logger.info(f"Synced {total_synced} records for {table_name} "
+                                 f"({changelog_synced} from changelog, {comparison_synced} from comparison)")
+            else:
+                self.logger.debug(f"No changes to sync for table {table_name}")
+
+            return total_synced
 
         except Exception as e:
             self.logger.error(f"Failed one-way sync for {table_name}: {e}")
@@ -342,38 +342,6 @@ class SyncEngine:
 
         except Exception as e:
             self.logger.error(f"Failed to apply change: {e}")
-            return False
-
-    def _apply_insert(self, table_name: str, change: ChangeRecord, target_manager: DatabaseManager) -> bool:
-        """Apply an INSERT operation."""
-        try:
-            # Get the current record from source database to get all column values
-            # This is simplified - in practice you'd store the full record data in change_data
-            pk_conditions = []
-            pk_params = []
-
-            for col, val in change.primary_key_values.items():
-                if target_manager.config.db_type == 'sqlite':
-                    pk_conditions.append(f"{col} = ?")
-                else:
-                    pk_conditions.append(f"{col} = %s")
-                pk_params.append(val)
-
-            # Check if record already exists (to handle duplicate inserts)
-            check_query = f"SELECT COUNT(*) as count FROM {table_name} WHERE {' AND '.join(pk_conditions)}"
-
-            results = target_manager.execute_query(check_query, tuple(pk_params))
-            if results and results[0].get('count', 0) > 0:
-                self.logger.debug(f"Record already exists in {table_name}, skipping insert")
-                return True
-
-            # For now, we'll just log the insert operation
-            # In a full implementation, you'd need to get the complete record data
-            self.logger.info(f"Would insert record into {table_name} with PK: {change.primary_key_values}")
-            return True
-
-        except Exception as e:
-            self.logger.error(f"Failed to apply INSERT: {e}")
             return False
 
     def _apply_insert(self, table_name: str, change: ChangeRecord, target_manager: DatabaseManager) -> bool:
@@ -535,6 +503,244 @@ class SyncEngine:
 
         except Exception as e:
             self.logger.error(f"Failed to apply DELETE: {e}")
+            return False
+
+    def _compare_and_sync_table_data(self, table_name: str, source_manager: DatabaseManager,
+                                     target_manager: DatabaseManager) -> int:
+        """
+        Compare table data between source and target and sync based on timestamps and record count.
+
+        Args:
+            table_name: Name of the table to sync
+            source_manager: Source database manager
+            target_manager: Target database manager
+
+        Returns:
+            Number of records synchronized
+        """
+        try:
+            # Get table structure to identify timestamp columns
+            source_structure = source_manager.get_table_structure(table_name)
+            target_structure = target_manager.get_table_structure(table_name)
+
+            if not source_structure or not target_structure:
+                self.logger.error(f"Could not get table structure for {table_name}")
+                return 0
+
+            # Get primary key columns
+            pk_columns = source_structure.get('primary_keys', [])
+            if not pk_columns:
+                self.logger.error(f"No primary key found for table {table_name}")
+                return 0
+
+            # Find timestamp/updated_at columns
+            timestamp_columns = self._find_timestamp_columns(source_structure)
+
+            # Get record counts
+            source_count = self._get_table_count(source_manager, table_name)
+            target_count = self._get_table_count(target_manager, table_name)
+
+            self.logger.info(f"Table {table_name}: Source={source_count}, Target={target_count} records")
+
+            # If source has no data, nothing to sync
+            if source_count == 0:
+                return 0
+
+            # Get all records from source
+            source_records = self._get_all_records(source_manager, table_name, timestamp_columns)
+
+            if not source_records:
+                return 0
+
+            # Get existing records from target for comparison
+            target_records_map = self._get_records_map(target_manager, table_name, pk_columns, timestamp_columns)
+
+            synced_count = 0
+
+            for record in source_records:
+                # Build primary key for this record
+                pk_value = tuple(record.get(col) for col in pk_columns)
+
+                target_record = target_records_map.get(pk_value)
+
+                should_sync = False
+
+                if target_record is None:
+                    # Record doesn't exist in target - insert it
+                    should_sync = True
+                    self.logger.debug(f"New record for PK {pk_value}")
+                else:
+                    # Record exists - compare timestamps
+                    should_sync = self._should_update_based_on_timestamp(
+                        record, target_record, timestamp_columns
+                    )
+
+                    if should_sync:
+                        self.logger.debug(f"Source record newer for PK {pk_value}")
+
+                if should_sync:
+                    if self._sync_single_record(record, table_name, target_manager, pk_columns,
+                                                target_record is not None):
+                        synced_count += 1
+
+            return synced_count
+
+        except Exception as e:
+            self.logger.error(f"Failed to compare and sync table data for {table_name}: {e}")
+            return 0
+
+    def _find_timestamp_columns(self, table_structure: dict) -> list:
+        """Find columns that likely contain timestamps."""
+        columns = table_structure.get('columns', {})
+        timestamp_columns = []
+
+        # Common timestamp column names and types
+        timestamp_names = ['updated_at', 'modified_at', 'timestamp', 'last_modified', 'created_at']
+        timestamp_types = ['timestamp', 'datetime', 'date']
+
+        for col_name, col_info in columns.items():
+            col_type = col_info.get('type', '').lower()
+
+            # Check by name or type
+            if (col_name.lower() in timestamp_names or
+                    any(ts_type in col_type for ts_type in timestamp_types)):
+                timestamp_columns.append(col_name)
+
+        return timestamp_columns
+
+    def _get_table_count(self, manager: DatabaseManager, table_name: str) -> int:
+        """Get total record count for a table."""
+        try:
+            results = manager.execute_query(f"SELECT COUNT(*) as count FROM {table_name}")
+            return results[0]['count'] if results else 0
+        except Exception as e:
+            self.logger.error(f"Failed to get count for {table_name}: {e}")
+            return 0
+
+    def _get_all_records(self, manager: DatabaseManager, table_name: str, timestamp_columns: list) -> list:
+        """Get all records from a table, ordered by timestamp if available."""
+        try:
+            query = f"SELECT * FROM {table_name}"
+
+            # Order by timestamp columns if available
+            if timestamp_columns:
+                order_cols = ', '.join([f"{col} DESC" for col in timestamp_columns[:1]])  # Use first timestamp column
+                query += f" ORDER BY {order_cols}"
+
+            return manager.execute_query(query)
+        except Exception as e:
+            self.logger.error(f"Failed to get records from {table_name}: {e}")
+            return []
+
+    def _get_records_map(self, manager: DatabaseManager, table_name: str, pk_columns: list,
+                         timestamp_columns: list) -> dict:
+        """Get existing records as a map keyed by primary key values."""
+        try:
+            records = manager.execute_query(f"SELECT * FROM {table_name}")
+            records_map = {}
+
+            for record in records:
+                pk_value = tuple(record.get(col) for col in pk_columns)
+                records_map[pk_value] = record
+
+            return records_map
+        except Exception as e:
+            self.logger.error(f"Failed to get records map for {table_name}: {e}")
+            return {}
+
+    def _should_update_based_on_timestamp(self, source_record: dict, target_record: dict,
+                                          timestamp_columns: list) -> bool:
+        """Determine if source record should overwrite target based on timestamps."""
+        if not timestamp_columns:
+            # No timestamp columns - always update (source wins)
+            return True
+
+        from datetime import datetime
+        import dateutil.parser
+
+        try:
+            # Compare first available timestamp column
+            for col in timestamp_columns:
+                source_ts = source_record.get(col)
+                target_ts = target_record.get(col)
+
+                if source_ts is None or target_ts is None:
+                    continue
+
+                # Parse timestamps
+                if isinstance(source_ts, str):
+                    source_dt = dateutil.parser.parse(source_ts)
+                else:
+                    source_dt = source_ts
+
+                if isinstance(target_ts, str):
+                    target_dt = dateutil.parser.parse(target_ts)
+                else:
+                    target_dt = target_ts
+
+                # Source wins if it's newer
+                return source_dt > target_dt
+
+            # If no valid timestamps found, source wins
+            return True
+
+        except Exception as e:
+            self.logger.error(f"Error comparing timestamps: {e}")
+            return True  # Default to source wins
+
+    def _sync_single_record(self, record: dict, table_name: str, target_manager: DatabaseManager,
+                            pk_columns: list, is_update: bool) -> bool:
+        """Sync a single record to target database."""
+        try:
+            if is_update:
+                # Update existing record
+                set_clauses = []
+                update_values = []
+                where_clauses = []
+                where_values = []
+
+                # Build SET clause for non-PK columns
+                for col, value in record.items():
+                    if col not in pk_columns:
+                        if target_manager.config.db_type == 'sqlite':
+                            set_clauses.append(f"{col} = ?")
+                        else:
+                            set_clauses.append(f"{col} = %s")
+                        update_values.append(value)
+
+                # Build WHERE clause for PK columns
+                for col in pk_columns:
+                    if target_manager.config.db_type == 'sqlite':
+                        where_clauses.append(f"{col} = ?")
+                    else:
+                        where_clauses.append(f"{col} = %s")
+                    where_values.append(record[col])
+
+                if not set_clauses:
+                    return True  # Nothing to update
+
+                query = f"UPDATE {table_name} SET {', '.join(set_clauses)} WHERE {' AND '.join(where_clauses)}"
+                params = update_values + where_values
+
+            else:
+                # Insert new record
+                columns = list(record.keys())
+                values = [record[col] for col in columns]
+
+                if target_manager.config.db_type == 'sqlite':
+                    placeholders = ', '.join(['?' for _ in columns])
+                else:
+                    placeholders = ', '.join(['%s' for _ in columns])
+
+                query = f"INSERT INTO {table_name} ({', '.join(columns)}) VALUES ({placeholders})"
+                params = values
+
+            # Execute the query
+            result = target_manager.execute_query(query, tuple(params))
+            return result and result[0].get('affected_rows', 0) > 0
+
+        except Exception as e:
+            self.logger.error(f"Failed to sync record: {e}")
             return False
 
     def _resolve_conflict(self, table_name: str, change: ChangeRecord,
