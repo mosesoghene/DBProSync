@@ -377,6 +377,44 @@ class DatabaseManager:
             self.logger.error(f"Failed to create triggers for table {table_name}: {e}")
             return False
 
+    def remove_triggers(self, table_name: str) -> bool:
+        """
+        Remove triggers from a table.
+
+        Args:
+            table_name: Name of the source table
+
+        Returns:
+            True if triggers removed successfully, False otherwise
+        """
+        try:
+            if not self.connection:
+                if not self.connect():
+                    return False
+
+            with self.get_cursor() as cursor:
+                if self.config.db_type == DatabaseType.MYSQL.value:
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_insert_trigger")
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_update_trigger")
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_delete_trigger")
+
+                elif self.config.db_type == DatabaseType.POSTGRESQL.value:
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_changelog_trigger ON {table_name}")
+                    cursor.execute(f"DROP FUNCTION IF EXISTS {table_name}_changelog_func()")
+
+                elif self.config.db_type == DatabaseType.SQLITE.value:
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_insert_trigger")
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_update_trigger")
+                    cursor.execute(f"DROP TRIGGER IF EXISTS {table_name}_delete_trigger")
+
+            self.logger.info(f"Removed triggers for table: {table_name}")
+            return True
+
+        except Exception as e:
+            self.logger.error(f"Failed to remove triggers for table {table_name}: {e}")
+            return False
+
+
     def _create_mysql_triggers(self, cursor, table_name: str, changelog_table: str,
                                pk_columns: List[str], db_id: str):
         """Create MySQL triggers for change tracking."""

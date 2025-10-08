@@ -404,6 +404,73 @@ class SyncWorker(QObject):
             finally:
                 self._mutex.unlock()
 
+    def teardown_sync_infrastructure(self) -> bool:
+        """
+        Teardown sync infrastructure for all configured database pairs.
+
+        Returns:
+            True if teardown successful for all pairs, False otherwise
+        """
+        self._mutex.lock()
+        try:
+            if self._is_running:
+                self.log_message.emit("WARNING", "Cannot teardown infrastructure while sync is running")
+                return False
+
+            if not self._sync_engines:
+                self.error_occurred.emit("No database pairs configured")
+                return False
+
+            self._is_running = True
+            self._update_status(JobStatus.RUNNING)
+
+        finally:
+            self._mutex.unlock()
+
+        self.log_message.emit("INFO", "Tearing down sync infrastructure...")
+
+        success = True
+        total_pairs = len(self._sync_engines)
+        completed_pairs = 0
+
+        try:
+            for pair_id, engine in self._sync_engines.items():
+                pair_name = engine.db_pair.name
+                self.log_message.emit("INFO", f"Removing infrastructure for: {pair_name}")
+
+                if not engine.teardown_sync_infrastructure():
+                    self.log_message.emit("ERROR", f"Failed to teardown infrastructure for: {pair_name}")
+                    success = False
+                else:
+                    self.log_message.emit("INFO", f"Successfully removed infrastructure for: {pair_name}")
+
+                completed_pairs += 1
+                self._update_progress(completed_pairs, total_pairs)
+
+                # Small delay between teardowns
+                if completed_pairs < total_pairs:
+                    time.sleep(0.5)
+
+            if success:
+                self.log_message.emit("INFO", "Sync infrastructure teardown completed successfully")
+            else:
+                self.log_message.emit("WARNING", "Sync infrastructure teardown completed with errors")
+
+            return success
+
+        except Exception as e:
+            self.logger.error(f"Error tearing down sync infrastructure: {e}")
+            self.error_occurred.emit(f"Infrastructure teardown failed: {e}")
+            return False
+
+        finally:
+            self._mutex.lock()
+            try:
+                self._is_running = False
+                self._update_status(JobStatus.STOPPED)
+            finally:
+                self._mutex.unlock()
+
     def get_database_pair_status(self, pair_id: str) -> Dict[str, Any]:
         """
         Get status information for a specific database pair.

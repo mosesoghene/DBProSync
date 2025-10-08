@@ -103,6 +103,7 @@ class MainWindow(QMainWindow):
         self.stop_sync_btn = QPushButton("Stop Sync Schedule")
         self.manual_sync_btn = QPushButton("Smart Manual Sync")
         self.setup_infrastructure_btn = QPushButton("Setup Infrastructure")
+        self.teardown_infrastructure_btn = QPushButton("Teardown Infrastructure")
         self.settings_btn = QPushButton("Settings")
 
         # Set button properties
@@ -121,6 +122,7 @@ class MainWindow(QMainWindow):
         control_layout.addWidget(self.stop_sync_btn)
         control_layout.addWidget(self.manual_sync_btn)
         control_layout.addWidget(self.setup_infrastructure_btn)
+        control_layout.addWidget(self.teardown_infrastructure_btn)
         control_layout.addStretch()
         control_layout.addWidget(self.settings_btn)
 
@@ -345,6 +347,7 @@ class MainWindow(QMainWindow):
         self.stop_sync_btn.clicked.connect(self.stop_sync_schedule)
         self.manual_sync_btn.clicked.connect(self.run_manual_sync)
         self.setup_infrastructure_btn.clicked.connect(self.setup_infrastructure)
+        self.teardown_infrastructure_btn.clicked.connect(self.teardown_infrastructure)
         self.settings_btn.clicked.connect(self.open_settings)
 
         # Log controls
@@ -599,6 +602,30 @@ class MainWindow(QMainWindow):
 
         if reply == QMessageBox.Yes:
             self.sync_worker.setup_sync_infrastructure()
+
+    def teardown_infrastructure(self):
+        """Teardown synchronization infrastructure."""
+        db_pairs = self.config_manager.get_enabled_database_pairs()
+        if not db_pairs:
+            QMessageBox.warning(
+                self,
+                "No Configuration",
+                ERROR_MESSAGES['no_db_pairs']
+            )
+            return
+
+        reply = QMessageBox.question(
+            self,
+            "Teardown Infrastructure",
+            "This will remove all changelog triggers from your databases.\n\n"
+            "⚠️ WARNING: This will stop change tracking!\n\n"
+            "Continue?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            self.sync_worker.teardown_sync_infrastructure()
 
     def trigger_scheduled_sync(self):
         """Trigger a scheduled sync cycle."""

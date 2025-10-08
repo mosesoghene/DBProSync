@@ -97,6 +97,57 @@ class SyncEngine:
             self.local_manager.disconnect()
             self.cloud_manager.disconnect()
 
+    def teardown_sync_infrastructure(self) -> bool:
+        """
+        Remove changelog tables and triggers for all sync-enabled tables.
+
+        Returns:
+            True if teardown successful, False otherwise
+        """
+        self.logger.info(f"Tearing down sync infrastructure for {self.db_pair.name}")
+
+        try:
+            # Connect to both databases
+            if not self.local_manager.connect():
+                self.logger.error("Failed to connect to local database")
+                return False
+
+            if not self.cloud_manager.connect():
+                self.logger.error("Failed to connect to cloud database")
+                return False
+
+            success = True
+            sync_tables = self.db_pair.get_sync_enabled_tables()
+
+            for table_config in sync_tables:
+                table_name = table_config.table_name
+                self.logger.info(f"Removing infrastructure for table: {table_name}")
+
+                # Remove triggers from both databases
+                if not self.local_manager.remove_triggers(table_name):
+                    self.logger.error(f"Failed to remove local triggers for {table_name}")
+                    success = False
+
+                if not self.cloud_manager.remove_triggers(table_name):
+                    self.logger.error(f"Failed to remove cloud triggers for {table_name}")
+                    success = False
+
+                self.logger.info(f"Successfully removed infrastructure for {table_name}")
+
+            if success:
+                self.logger.info("Sync infrastructure teardown completed successfully")
+            else:
+                self.logger.warning("Sync infrastructure teardown completed with errors")
+
+            return success
+
+        except Exception as e:
+            self.logger.error(f"Failed to teardown sync infrastructure: {e}")
+            return False
+        finally:
+            self.local_manager.disconnect()
+            self.cloud_manager.disconnect()
+
     def sync_all_tables(self) -> List[SyncResult]:
         """
         Synchronize all configured tables.
